@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<title>P1 — 承閎股份有限公司</title>
+
+<style>
+/* ===== Prevent scroll hiding behind header ===== */
+html { scroll-padding-top: 140px; }
+
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #ffffff;
+    color: #333;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+body.dark {
+    background: #1e1e1e;
+    color: #e0e0e0;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: #555c7c;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header h1 {
+    margin: 0;
+    font-size: 40px;
+}
+
+/* ===== RIGHT CONTROLS ===== */
+.right-controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-left: auto;
+}
+.button-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ===== POP-DOWN NAV ===== */
+#navBar {
+    background: #677199;
+    width: 100%;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.25s ease, opacity 0.25s ease;
+    z-index: 900;
+}
+#navBar.visible {
+    opacity: 1;
+    height: 30px;
+    padding: 10px 0;
+}
+.nav-item {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+.nav-item:hover { transform: scale(1.5); }
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+    margin: 20px 40px;
+    display: inline-block;
+    padding: 10px 18px;
+    background: #555c7c;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+.back-btn:hover {
+    transform: scale(1.08);
+    background: #6b759c;
+}
+body.dark .back-btn {
+    background: #ccc;
+    color: #222;
+}
+body.dark .back-btn:hover {
+    background: #eee;
+}
+
+/* ===== CONTENT ===== */
+section {
+    padding: 40px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #004080;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+
+<script>
+/* ===== LANGUAGE TOGGLE ===== */
+let currentLang = "zh";
+
+function updateModeButtonText() {
+    const isDark = document.body.classList.contains("dark");
+    if (currentLang === "zh") {
+        document.getElementById("modeBtn").innerText = isDark ? "淺色模式" : "深色模式";
+    } else {
+        document.getElementById("modeBtn").innerText = isDark ? "Light Mode" : "Dark Mode";
+    }
+}
+
+function toggleLanguage() {
+    currentLang = (currentLang === "zh") ? "en" : "zh";
+    document.getElementById("langToggleBtn").innerText =
+        (currentLang === "zh") ? "English" : "中文";
+
+    switchLang(currentLang);
+    updateModeButtonText();
+}
+
+function switchLang(lang) {
+    document.querySelectorAll("[data-lang]").forEach(el => {
+        el.style.display = (el.getAttribute("data-lang") === lang) ? "block" : "none";
+    });
+}
+
+/* ===== DARK MODE ===== */
+function toggleMode() {
+    document.body.classList.toggle("dark");
+    updateModeButtonText();
+}
+
+/* ===== POP-DOWN MENU ===== */
+window.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector("header");
+    const navBar = document.getElementById("navBar");
+    header.addEventListener("mouseenter", () => navBar.classList.add("visible"));
+    header.addEventListener("mouseleave", () => navBar.classList.remove("visible"));
+
+    switchLang("zh");
+    updateModeButtonText();
+});
+</script>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1 data-lang="zh">承閎股份有限公司</h1>
+        <h1 data-lang="en">ChangHun Steel Inc.</h1>
+    </div>
+
+    <div class="right-controls">
+        <div class="button-column">
+            <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">English</button>
+            <button class="mode-btn" id="modeBtn" onclick="toggleMode()">深色模式</button>
+        </div>
+    </div>
+
+    <!-- POP DOWN NAV -->
+    <div id="navBar">
+        <div class="nav-item" data-lang="zh" onclick="location.href='index.html#home'">首頁</div>
+        <div class="nav-item" data-lang="en" onclick="location.href='index.html#home'">Home</div>
+
+        <div class="nav-item" data-lang="zh" onclick="location.href='index.html#features'">產品</div>
+        <div class="nav-item" data-lang="en" onclick="location.href='index.html#features'">Products</div>
+
+        <div class="nav-item" data-lang="zh" onclick="location.href='index.html#about'">關於我們</div>
+        <div class="nav-item" data-lang="en" onclick="location.href='index.html#about'">About Us</div>
+
+        <div class="nav-item" data-lang="zh" onclick="location.href='index.html#contact'">聯絡我們</div>
+        <div class="nav-item" data-lang="en" onclick="location.href='index.html#contact'">Contact</div>
+    </div>
+</header>
+
+<!-- BACK BUTTON -->
+<a class="back-btn" href="index.html" data-lang="zh">← 返回首頁</a>
+<a class="back-btn" href="index.html" data-lang="en">← Back to Home</a>
+
+<!-- MAIN CONTENT -->
+<section>
+    <h2 data-lang="zh">P1 產品頁面</h2>
+    <h2 data-lang="en">P1 Product Page</h2>
+
+    <p data-lang="zh">
+        這裡是 P1 產品的詳細介紹頁面，你可以在此放入更多資訊、圖片或規格表。
+    </p>
+
+    <p data-lang="en">
+        This is the detailed page for product P1. You can place additional information, images, and specifications here.
+    </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
+    <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

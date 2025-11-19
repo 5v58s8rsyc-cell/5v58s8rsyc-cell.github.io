@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<title>承閎股份有限公司 — ChangHun Steel Inc.</title>
+
+<style>
+/* ===== Prevent sections from hiding behind header ===== */
+html { scroll-padding-top: 140px; }
+
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #ffffff;
+    color: #333;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+body.dark {
+    background: #1e1e1e;
+    color: #e0e0e0;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: #555c7c;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header h1 {
+    margin: 0;
+    font-size: 40px;
+}
+
+/* ===== RIGHT CONTROLS ===== */
+.right-controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-left: auto;
+}
+.button-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ===== SEARCH BAR ===== */
+.search-container {
+    width: 150px;
+    margin-right: 20px;
+}
+#searchBox {
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: transform 0.15s ease;
+}
+#searchBox:hover { transform: scale(1.05); }
+#searchBox:focus { transform: scale(1.07); outline: none; }
+
+/* ===== BUTTONS ===== */
+.lang-toggle-btn, .mode-btn {
+    width: 100px;
+    text-align: center;
+    background: white;
+    color: #555c7c;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.lang-toggle-btn:hover, .mode-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.25);
+}
+body.dark .lang-toggle-btn,
+body.dark .mode-btn {
+    background: #ddd;
+    color: #222;
+}
+
+/* ===== POP-DOWN NAV ===== */
+#navBar {
+    background: #677199;
+    width: 100%;
+    position: fixed;
+    top: 110px;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.25s ease, opacity 0.25s ease;
+    z-index: 900;
+}
+#navBar.visible {
+    opacity: 1;
+    height: 30px;
+    padding: 10px 0;
+}
+.nav-item {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+.nav-item:hover { transform: scale(1.5); }
+
+/* ===== HERO ===== */
+.hero {
+    text-align: center;
+    padding: 60px 40px;
+    background: #f4f4f4;
+}
+body.dark .hero { background: #2c2c2c; }
+
+/* ===== SECTIONS ===== */
+section { padding: 40px; }
+
+/* ===== PRODUCT FEATURE GRID ===== */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-item {
+    flex: 1;
+    min-width: 220px;
+    padding: 10px;
+}
+
+/* ===== SEARCH HIGHLIGHT ===== */
+.highlight {
+    background: yellow;
+    padding: 2px;
+    border-radius: 3px;
+}
+
+/* ===== CAROUSEL ===== */
+.carousel-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+.carousel-container {
+    width: calc(100% - 160px);
+    overflow: hidden;
+}
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+.carousel-item {
+    width: calc(100% / 3);
+    height: 220px;
+    margin: 0 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: block;
+}
+.carousel-item:hover {
+    transform: scale(1.06);
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.25);
+}
+
+/* Arrow buttons */
+.carousel-arrow {
+    width: 40px;
+    height: 180px;
+    background: rgba(0,0,0,0.25);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+.carousel-arrow:hover {
+    background: rgba(0,0,0,0.45);
+    transform: scale(1.05);
+}
+
+/* ===== CONTACT 4 BLOCK GRID ===== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 20px 100px;
+}
+.contact-box {
+    background: #e8e9ef;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #004080;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+    #navBar { display: none; }
+    .contact-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    .carousel-arrow { display: none; }
+}
+</style>
+
+<script>
+/* ===== LANGUAGE TOGGLE ===== */
+let currentLang = "zh";
+
+function updateModeButtonText() {
+    const isDark = document.body.classList.contains("dark");
+    if (currentLang === "zh") {
+        document.getElementById("modeBtn").innerText = isDark ? "淺色模式" : "深色模式";
+    } else {
+        document.getElementById("modeBtn").innerText = isDark ? "Light Mode" : "Dark Mode";
+    }
+}
+
+function toggleLanguage() {
+    currentLang = (currentLang === "zh") ? "en" : "zh";
+    document.getElementById("langToggleBtn").innerText =
+        (currentLang === "zh") ? "English" : "中文";
+
+    switchLang(currentLang);
+    updateModeButtonText();
+}
+
+function switchLang(lang) {
+    document.querySelectorAll("[data-lang]").forEach(el => {
+        el.style.display = (el.getAttribute("data-lang") === lang) ? "block" : "none";
+    });
+}
+
+/* ===== DARK MODE ===== */
+function toggleMode() {
+    document.body.classList.toggle("dark");
+    updateModeButtonText();
+}
+
+/* ===== CAROUSEL FUNCTION ===== */
+let itemIndex = 0;
+function moveCarousel(dir) {
+    const track = document.querySelector(".carousel-track");
+    const total = 3; // only 3 items now
+
+    itemIndex += dir;
+    if (itemIndex < 0) itemIndex = total - 1;
+    if (itemIndex > total - 1) itemIndex = 0;
+
+    const shift = (100 / 3) * itemIndex;
+    track.style.transform = `translateX(-${shift}%)`;
+}
+
+setInterval(() => moveCarousel(1), 8000);
+
+/* ===== SEARCH ===== */
+function clearHighlights() {
+    document.querySelectorAll(".highlight").forEach(el => {
+        el.outerHTML = el.innerText;
+    });
+}
+function searchSite() {
+    clearHighlights();
+    let keyword = document.getElementById("searchBox").value.trim();
+    if (!keyword) return;
+    let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    let node, results = [];
+    while (node = walker.nextNode()) {
+        let text = node.nodeValue;
+        let pos = text.toLowerCase().indexOf(keyword.toLowerCase());
+        if (pos !== -1) {
+            let span = document.createElement("mark");
+            span.className = "highlight";
+            let before = text.slice(0, pos);
+            let match = text.slice(pos, pos + keyword.length);
+            let after = text.slice(pos + keyword.length);
+            span.textContent = match;
+            let parent = node.parentNode;
+            parent.insertBefore(document.createTextNode(before), node);
+            parent.insertBefore(span, node);
+            parent.insertBefore(document.createTextNode(after), node);
+            parent.removeChild(node);
+            results.push(span);
+        }
+    }
+    if (results.length > 0) {
+        results[0].scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("searchBox").addEventListener("keydown", e => {
+        if (e.key === "Enter") searchSite();
+    });
+    switchLang("zh");
+    updateModeButtonText();
+});
+
+/* ===== POP-DOWN NAV ===== */
+window.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector("header");
+    const navBar = document.getElementById("navBar");
+    header.addEventListener("mouseenter", () => navBar.classList.add("visible"));
+    header.addEventListener("mouseleave", () => navBar.classList.remove("visible"));
+});
+
+/* ===== SCROLL TO SECTION ===== */
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
+</script>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1 data-lang="zh">承閎股份有限公司</h1>
+        <h1 data-lang="en">ChangHun Steel Inc.</h1>
+    </div>
+
+    <div class="right-controls">
+        <div class="search-container">
+            <input id="searchBox" placeholder="Search..." />
+        </div>
+        <div class="button-column">
+            <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">English</button>
+            <button class="mode-btn" id="modeBtn" onclick="toggleMode()">深色模式</button>
+        </div>
+    </div>
+
+    <div id="navBar">
+        <div class="nav-item" data-lang="zh" onclick="scrollToSection('home')">首頁</div>
+        <div class="nav-item" data-lang="en" onclick="scrollToSection('home')">Home</div>
+
+        <div class="nav-item" data-lang="zh" onclick="scrollToSection('features')">產品</div>
+        <div class="nav-item" data-lang="en" onclick="scrollToSection('features')">Products</div>
+
+        <div class="nav-item" data-lang="zh" onclick="scrollToSection('about')">關於我們</div>
+        <div class="nav-item" data-lang="en" onclick="scrollToSection('about')">About Us</div>
+
+        <div class="nav-item" data-lang="zh" onclick="scrollToSection('contact')">聯絡我們</div>
+        <div class="nav-item" data-lang="en" onclick="scrollToSection('contact')">Contact</div>
+    </div>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="home">
+    <h1 data-lang="zh">專業高品質鋼卷供應商</h1>
+    <h1 data-lang="en">Your Trusted High-Quality Steel Coil Supplier</h1>
+
+    <p data-lang="zh">耐用、高強度並可客製化的鋼卷產品，適用於各項工業需求。</p>
+    <p data-lang="en">Durable, high-strength steel coils for all industrial applications.</p>
+</div>
+
+<!-- PRODUCT SECTION -->
+<section id="features">
+    <h2 data-lang="zh">產品</h2>
+    <h2 data-lang="en">Products</h2>
+
+    <div class="products">
+        <div class="product-item">
+            <h3 data-lang="zh">精密加工</h3>
+            <h3 data-lang="en">Precision Engineering</h3>
+            <p data-lang="zh">高精度設備生產，確保優良品質。</p>
+            <p data-lang="en">Produced with high-precision machinery.</p>
+        </div>
+
+        <div class="product-item">
+            <h3 data-lang="zh">耐用材料</h3>
+            <h3 data-lang="en">Durable Materials</h3>
+            <p data-lang="zh">使用高品質鋼材，提高耐用性。</p>
+            <p data-lang="en">Built using premium-grade steel.</p>
+        </div>
+
+        <div class="product-item">
+            <h3 data-lang="zh">客製化服務</h3>
+            <h3 data-lang="en">Custom Solutions</h3>
+            <p data-lang="zh">依需求提供客製化規格。</p>
+            <p data-lang="en">Custom sizes and processing available.</p>
+        </div>
+    </div>
+
+    <!-- UPDATED 3-BOX CAROUSEL -->
+    <div class="carousel-wrapper">
+        <button class="carousel-arrow" onclick="moveCarousel(-1)">&#10094;</button>
+        <div class="carousel-container">
+            <div class="carousel-track">
+
+                <!-- Box 1: Red (10% saturation) -->
+                <a href="p1.html" class="carousel-item" style="background: rgba(255,0,0,0.10);"></a>
+
+                <!-- Box 2: Yellow (10% saturation) -->
+                <a href="p2.html" class="carousel-item" style="background: rgba(255,255,0,0.10);"></a>
+
+                <!-- Box 3: Green (10% saturation) -->
+                <a href="p3.html" class="carousel-item" style="background: rgba(0,255,0,0.10);"></a>
+
+            </div>
+        </div>
+        <button class="carousel-arrow" onclick="moveCarousel(1)">&#10095;</button>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+    <h2 data-lang="zh">關於我們</h2>
+    <h2 data-lang="en">About Us</h2>
+
+    <p data-lang="zh">
+        承閎股份有限公司專注鋼卷產品生產與加工，以品質穩定與誠信服務聞名。
+    </p>
+    <p data-lang="en">
+        ChangHun Steel Inc. specializes in steel coil production and processing, known for consistency and reliability.
+    </p>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <h2 data-lang="zh">聯絡我們</h2>
+    <h2 data-lang="en">Contact Us</h2>
+
+    <div class="contact-grid">
+
+        <div class="contact-box" data-lang="zh">地址<br>台中市霧峰區四德路489-38號</div>
+        <div class="contact-box" data-lang="en">Address<br>No.489-38, Wufeng Dist., Taichung</div>
+
+        <div class="contact-box">
+            <p data-lang="zh">電話<br><a href="tel:+886423399933">+886-4-2339-9933</a></p>
+            <p data-lang="en">Phone<br><a href="tel:+886423399933">+886-4-2339-9933</a></p>
+        </div>
+
+        <div class="contact-box">
+            <p data-lang="zh">傳真<br>+886-4-2339-3816</p>
+            <p data-lang="en">Fax<br>+886-4-2339-3816</p>
+        </div>
+
+        <div class="contact-box">
+            <p data-lang="zh">電子郵件<br><a href="mailto:sales@chang-hun.com">sales@chang-hun.com</a></p>
+            <p data-lang="en">Email<br><a href="mailto:sales@chang-hun.com">sales@chang-hun.com</a></p>
+        </div>
+
+    </div>
+</section>
+
+<!-- GOOGLE MAP AT BOTTOM -->
+<div id="bottomMapContainer" style="width:100%; margin-top:50px;">
+    <div data-lang="zh">
+        <iframe
+            src="https://www.google.com/maps?q=台中市霧峰區四德路489-38號&output=embed"
+            width="100%" height="400" style="border:0;" loading="lazy"></iframe>
+    </div>
+
+    <div data-lang="en">
+        <iframe
+            src="https://www.google.com/maps?q=489-38,+Si-De+Road,+Wufeng,+Taichung&output=embed"
+            width="100%" height="400" style="border:0;" loading="lazy"></iframe>
+    </div>
+</div>
+
+<footer>
+    <p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
+    <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
