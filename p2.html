@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<title>承閎股份有限公司 — Partition Frame System - Accessories & Construction</title>
+
+<style>
+html { scroll-padding-top: 140px; }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #ffffff;
+    color: #222;
+    transition: 0.3s ease;
+}
+body.dark { background: #0f172a; color: #e2e8f0; }
+
+/* HEADER */
+header {
+    background: #2760A8;
+    color: white;
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    height: 90px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.header-logo {
+    height: 70px; width: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 18px;
+    cursor: pointer;
+}
+header h1 { margin: 0; font-size: 32px; }
+
+/* BACK BUTTON */
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    background: #2760A8;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+body.dark .back-button { background: #1e3a5f; }
+
+/* CONTENT SECTIONS */
+section { padding: 40px; }
+h2 { margin-top: 0; }
+
+/* TABLE STYLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+body.dark table th, body.dark table td {
+    border-color: #334155;
+}
+
+/* PLACEHOLDER FOR IMAGES */
+.img-placeholder {
+    width: 100%;
+    height: 200px;
+    background: #ccc;
+    border-radius: 12px;
+    margin: 15px 0 30px 0;
+}
+
+/* FOOTER */
+footer {
+    background: #003066;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+
+<script>
+let currentLang = "zh";
+
+function updateModeText() {
+    const dark = document.body.classList.contains("dark");
+    document.getElementById("modeBtn").innerText =
+        currentLang === "zh"
+        ? (dark ? "淺色模式" : "深色模式")
+        : (dark ? "Light Mode" : "Dark Mode");
+}
+
+function toggleLanguage() {
+    currentLang = currentLang === "zh" ? "en" : "zh";
+    document.getElementById("langToggleBtn").innerText =
+        currentLang === "zh" ? "English" : "中文";
+    switchLang(currentLang);
+    updateModeText();
+}
+
+function switchLang(lang) {
+    document.querySelectorAll("[data-lang]").forEach(e => {
+        e.style.display = (e.getAttribute("data-lang") === lang) ? "block" : "none";
+    });
+}
+
+function toggleMode() {
+    document.body.classList.toggle("dark");
+    updateModeText();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    switchLang("zh");
+    updateModeText();
+});
+</script>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <img src="logo.jpeg" class="header-logo" onclick="location.href='index.html'">
+
+    <div>
+        <h1 data-lang="zh">隔間輕鋼架－配件與施工</h1>
+        <h1 data-lang="en">Partition Frame System – Accessories & Construction</h1>
+    </div>
+
+    <div style="margin-left:auto; display:flex; gap:15px;">
+        <button id="langToggleBtn" onclick="toggleLanguage()">English</button>
+        <button id="modeBtn" onclick="toggleMode()">深色模式</button>
+    </div>
+</header>
+
+<!-- BACK BUTTON -->
+<button class="back-button" onclick="location.href='index.html'">← Back</button>
+
+<!-- ================== PAGE CONTENT START ================== -->
+
+<!-- EXPANDED METAL MESH -->
+<section>
+    <h2 data-lang="zh">I 溝有筋擴張網 Expanded Metal Mesh</h2>
+    <h2 data-lang="en">Expanded Metal Mesh</h2>
+
+    <div class="img-placeholder"></div>
+
+    <table>
+        <tr><th data-lang="zh">材質</th><td>JIS G3302</td></tr>
+        <tr><th data-lang="zh">厚度</th><td>0.4 mm ± 0.005mm</td></tr>
+        <tr><th data-lang="zh">規格</th><td>60.6 cm x 242.4 cm</td></tr>
+        <tr><th data-lang="zh">網目</th><td>6.2 x 2.1mm (直徑 2.0–2.3mm)</td></tr>
+        <tr><th data-lang="zh">溝距</th><td>60 mm</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<!-- PUNCHED C-STUD -->
+<section>
+    <h2 data-lang="zh">沖孔柱 Punched C-Stud</h2>
+    <h2 data-lang="en">Punched C-Stud</h2>
+
+    <div class="img-placeholder"></div>
+
+    <table>
+        <tr>
+            <th>Model</th><th>A (mm)</th><th>W (mm)</th><th>Thickness</th>
+        </tr>
+        <tr><td>CF-45 (1-1/2")</td><td>65</td><td>18</td><td>1.0–1.2</td></tr>
+        <tr><td>CF-75 (3")</td><td>92</td><td>18</td><td>1.0–1.2</td></tr>
+        <tr><td>CF-92 (3-5/8")</td><td>92</td><td>18</td><td>1.0–1.2</td></tr>
+        <tr><td>CF-100 (4")</td><td>102</td><td>18</td><td>1.0–1.2</td></tr>
+        <tr><td>CF-125 (5")</td><td>125</td><td>45</td><td>1.0–1.2</td></tr>
+        <tr><td>CF-150 (6")</td><td>150</td><td>45</td><td>1.0–1.2</td></tr>
+        <tr><td>CF-200 (8")</td><td>200</td><td>65</td><td>1.0–1.2</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<!-- SERIES OF STUDS -->
+<section>
+    <h2 data-lang="zh">點焊立柱系列產品</h2>
+    <h2 data-lang="en">Series of Studs (Welded / Angled / C-shaped)</h2>
+
+    <div class="img-placeholder"></div>
+
+    <h3 data-lang="zh">點焊立柱 Welded</h3>
+    <h3 data-lang="en">Welded Stud</h3>
+
+    <table>
+        <tr><th>Material</th><td>Hot Rolled Steel JIS G3131 / Cold Rolled Steel JIS G3141 / Galvanized Steel JIS G3302</td></tr>
+        <tr><th>Thickness</th><td>1.2mm ± 0.005mm</td></tr>
+        <tr><th>Length</th><td>4m (可議)</td></tr>
+        <tr><th>Height</th><td>20mm / 25mm</td></tr>
+        <tr><th>Spec</th><td>10 / 12 / 13 / 15 / 17 / 18 / 20 / 23 / 30 cm</td></tr>
+    </table>
+
+    <br>
+
+    <h3 data-lang="zh">角鐵 Angled Iron</h3>
+    <h3 data-lang="en">Angled Iron</h3>
+
+    <table>
+        <tr><th>Thickness</th><td>1.2mm ± 0.005mm</td></tr>
+        <tr><th>Spec</th><td>L: 25mm x H: 21mm ± 1mm</td></tr>
+    </table>
+
+    <br>
+
+    <h3 data-lang="zh">單Ｔ C-shaped Angled Iron</h3>
+    <h3 data-lang="en">C-shaped Angled Iron</h3>
+
+    <table>
+        <tr><th>Thickness</th><td>1.2mm ± 0.005mm</td></tr>
+        <tr><th>Spec</th><td>W: 52mm x H: 41mm ± 1mm</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<!-- STUD PUNCHING -->
+<section>
+    <h2 data-lang="zh">立柱沖孔規格及加強樁柱</h2>
+    <h2 data-lang="en">Stud Punching & Channel</h2>
+
+    <div class="img-placeholder"></div>
+
+    <p data-lang="zh">
+        為配合施工應用，立柱沖孔規格如下：  
+        立柱 56mm 立柱 76mm、96mm、116mm，沖孔孔徑 20mm/25mm。  
+        38mm、25mm、19mm 隔間工程適用。
+    </p>
+
+    <p data-lang="en">
+        To meet construction needs, stud punching is used at stud sizes 56mm, 76mm, 96mm, 116mm with hole sizes 20mm / 25mm.  
+        Punch types 38mm, 25mm, 19mm are suitable for partition construction.
+    </p>
+
+    <h3 data-lang="zh">加強樁柱 Channel</h3>
+    <h3 data-lang="en">Reinforced Channel</h3>
+
+    <table>
+        <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
+        <tr><td>N-25</td><td>N/A</td><td>33</td><td>0.95</td></tr>
+        <tr><td>N-35</td><td>N/A</td><td>40</td><td>0.95</td></tr>
+        <tr><td>N-15</td><td>N/A</td><td>25</td><td>0.95</td></tr>
+    </table>
+
+</section>
+
+<hr>
+
+<!-- TRIMMING PROTECTION -->
+<section>
+    <h2 data-lang="zh">隔間板材之修邊保護</h2>
+    <h2 data-lang="en">Trimming Protection</h2>
+
+    <div class="img-placeholder"></div>
+
+    <h3 data-lang="zh">護角 Corner</h3>
+    <h3 data-lang="en">Corner</h3>
+
+    <table>
+        <tr><th>Model</th><th>W</th><th>Spec</th><th>Suitable Material</th></tr>
+        <tr><td>V-40</td><td>40</td><td>40 x 40</td><td>9, 12, 15</td></tr>
+        <tr><td>V-25</td><td>25</td><td>25 x 25</td><td>9</td></tr>
+    </table>
+
+    <h3 data-lang="zh">收邊節角 Angle</h3>
+    <h3 data-lang="en">Angle</h3>
+
+    <table>
+        <tr><th>Model</th><th>W</th><th>Spec</th><th>Suitable Material</th></tr>
+        <tr><td>VL-15</td><td>15</td><td>34.2</td><td>15</td></tr>
+        <tr><td>VL-12</td><td>12.5</td><td>37.5</td><td>12</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<!-- ENCASEMENT -->
+<section>
+    <h2 data-lang="zh">柱體包邊 Columns & Fence</h2>
+    <h2 data-lang="en">Columns & Fence</h2>
+
+    <div class="img-placeholder"></div>
+
+    <table>
+        <tr><th>Model</th><th>A</th><th>B</th><th>C</th></tr>
+        <tr><td>C-40</td><td>A</td><td>B</td><td>—</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<!-- FINISHING IN PARTITION -->
+<section>
+    <h2 data-lang="zh">隔間樑端收頭</h2>
+    <h2 data-lang="en">Finishing in Partition</h2>
+
+    <div class="img-placeholder"></div>
+
+    <h3 data-lang="zh">隔間樑端收頭</h3>
+    <h3 data-lang="en">Finishing of Partition Terminals</h3>
+
+    <div class="img-placeholder"></div>
+
+    <h3 data-lang="zh">RC 隔間樑端收頭</h3>
+    <h3 data-lang="en">RC Finishing of Partition Terminals</h3>
+
+    <div class="img-placeholder"></div>
+</section>
+
+<hr>
+
+<!-- L & T BEND -->
+<section>
+    <h2 data-lang="zh">隔間L型轉角 L Bend</h2>
+    <h2 data-lang="en">L Bend</h2>
+
+    <div class="img-placeholder"></div>
+
+    <h2 data-lang="zh">隔間T型轉角 T Bend</h2>
+    <h2 data-lang="en">T Bend</h2>
+
+    <div class="img-placeholder"></div>
+</section>
+
+<hr>
+
+<!-- ACCESSORIES -->
+<section>
+    <h2 data-lang="zh">配件類 Accessories</h2>
+    <h2 data-lang="en">Accessories</h2>
+
+    <h3 data-lang="zh">伸縮縫條 Expansion Seals</h3>
+    <h3 data-lang="en">Expansion Seals</h3>
+
+    <div class="img-placeholder"></div>
+
+    <h3 data-lang="zh">彈性橫樑 Resilient Channel</h3>
+    <h3 data-lang="en">Resilient Channel</h3>
+
+    <div class="img-placeholder"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
+    <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

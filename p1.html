@@ -2,117 +2,88 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8" />
-<title>P1 — 承閎股份有限公司</title>
+<title>承閎股份有限公司 — Partition Frame System</title>
 
 <style>
-/* ===== Prevent scroll hiding behind header ===== */
+/* SAME THEME AS MAIN WEBSITE */
 html { scroll-padding-top: 140px; }
-
-/* ===== GLOBAL ===== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background: #ffffff;
-    color: #333;
-    transition: background 0.3s ease, color 0.3s ease;
+    color: #222;
+    transition: 0.3s ease;
 }
-body.dark {
-    background: #1e1e1e;
-    color: #e0e0e0;
-}
+body.dark { background: #0f172a; color: #e2e8f0; }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
-    background: #555c7c;
+    background: #2760A8;
     color: white;
-    padding: 20px 40px;
+    padding: 10px 40px;
     display: flex;
     align-items: center;
+    height: 90px;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-header h1 {
-    margin: 0;
-    font-size: 40px;
-}
-
-/* ===== RIGHT CONTROLS ===== */
-.right-controls {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-left: auto;
-}
-.button-column {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* ===== POP-DOWN NAV ===== */
-#navBar {
-    background: #677199;
-    width: 100%;
-    position: fixed;
-    top: 100px;
-    left: 0;
-    display: flex;
-    justify-content: space-around;
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-    transition: height 0.25s ease, opacity 0.25s ease;
-    z-index: 900;
-}
-#navBar.visible {
-    opacity: 1;
-    height: 30px;
-    padding: 10px 0;
-}
-.nav-item {
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
+.header-logo {
+    height: 70px; width: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 18px;
     cursor: pointer;
-    transition: transform 0.15s ease;
 }
-.nav-item:hover { transform: scale(1.5); }
+header h1 { margin: 0; font-size: 36px; }
 
-/* ===== BACK BUTTON ===== */
-.back-btn {
-    margin: 20px 40px;
-    display: inline-block;
+/* LEFT BACK BUTTON */
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    background: #2760A8;
+    color: #fff;
+    border: none;
     padding: 10px 18px;
-    background: #555c7c;
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
     font-weight: bold;
-    transition: transform 0.2s ease, background 0.2s ease;
 }
-.back-btn:hover {
-    transform: scale(1.08);
-    background: #6b759c;
+body.dark .back-button { background: #1e3a5f; }
+
+/* SECTION TITLES */
+section { padding: 40px; }
+h2 { margin-top: 0; }
+
+/* TABLE STYLES */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
 }
-body.dark .back-btn {
-    background: #ccc;
-    color: #222;
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
 }
-body.dark .back-btn:hover {
-    background: #eee;
+body.dark table th, body.dark table td {
+    border-color: #334155;
 }
 
-/* ===== CONTENT ===== */
-section {
-    padding: 40px;
+/* PLACEHOLDER IMAGE BOXES */
+.img-placeholder {
+    width: 100%;
+    height: 200px;
+    background: #cccccc;
+    border-radius: 12px;
+    margin: 10px 0 25px 0;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer {
-    background: #004080;
+    background: #003066;
     color: white;
     text-align: center;
     padding: 20px;
@@ -120,102 +91,247 @@ footer {
 </style>
 
 <script>
-/* ===== LANGUAGE TOGGLE ===== */
+/* SAME LANGUAGE + MODE TOGGLE SYSTEM */
 let currentLang = "zh";
 
-function updateModeButtonText() {
-    const isDark = document.body.classList.contains("dark");
-    if (currentLang === "zh") {
-        document.getElementById("modeBtn").innerText = isDark ? "淺色模式" : "深色模式";
-    } else {
-        document.getElementById("modeBtn").innerText = isDark ? "Light Mode" : "Dark Mode";
-    }
+function updateModeText() {
+    const dark = document.body.classList.contains("dark");
+    document.getElementById("modeBtn").innerText =
+        currentLang === "zh"
+        ? (dark ? "淺色模式" : "深色模式")
+        : (dark ? "Light Mode" : "Dark Mode");
 }
-
 function toggleLanguage() {
-    currentLang = (currentLang === "zh") ? "en" : "zh";
+    currentLang = currentLang === "zh" ? "en" : "zh";
     document.getElementById("langToggleBtn").innerText =
-        (currentLang === "zh") ? "English" : "中文";
-
+        currentLang === "zh" ? "English" : "中文";
     switchLang(currentLang);
-    updateModeButtonText();
+    updateModeText();
 }
-
 function switchLang(lang) {
-    document.querySelectorAll("[data-lang]").forEach(el => {
-        el.style.display = (el.getAttribute("data-lang") === lang) ? "block" : "none";
+    document.querySelectorAll("[data-lang]").forEach(e => {
+        e.style.display = e.getAttribute("data-lang") === lang ? "block" : "none";
     });
 }
-
-/* ===== DARK MODE ===== */
 function toggleMode() {
     document.body.classList.toggle("dark");
-    updateModeButtonText();
+    updateModeText();
 }
 
-/* ===== POP-DOWN MENU ===== */
-window.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelector("header");
-    const navBar = document.getElementById("navBar");
-    header.addEventListener("mouseenter", () => navBar.classList.add("visible"));
-    header.addEventListener("mouseleave", () => navBar.classList.remove("visible"));
-
+document.addEventListener("DOMContentLoaded", () => {
     switchLang("zh");
-    updateModeButtonText();
+    updateModeText();
 });
 </script>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
+    <img src="logo.jpeg" class="header-logo" onclick="location.href='index.html'">
     <div>
-        <h1 data-lang="zh">承閎股份有限公司</h1>
-        <h1 data-lang="en">ChangHun Steel Inc.</h1>
+        <h1 data-lang="zh">隔間輕鋼架系統</h1>
+        <h1 data-lang="en">Partition Frame System</h1>
     </div>
 
-    <div class="right-controls">
-        <div class="button-column">
-            <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">English</button>
-            <button class="mode-btn" id="modeBtn" onclick="toggleMode()">深色模式</button>
-        </div>
-    </div>
-
-    <!-- POP DOWN NAV -->
-    <div id="navBar">
-        <div class="nav-item" data-lang="zh" onclick="location.href='index.html#home'">首頁</div>
-        <div class="nav-item" data-lang="en" onclick="location.href='index.html#home'">Home</div>
-
-        <div class="nav-item" data-lang="zh" onclick="location.href='index.html#features'">產品</div>
-        <div class="nav-item" data-lang="en" onclick="location.href='index.html#features'">Products</div>
-
-        <div class="nav-item" data-lang="zh" onclick="location.href='index.html#about'">關於我們</div>
-        <div class="nav-item" data-lang="en" onclick="location.href='index.html#about'">About Us</div>
-
-        <div class="nav-item" data-lang="zh" onclick="location.href='index.html#contact'">聯絡我們</div>
-        <div class="nav-item" data-lang="en" onclick="location.href='index.html#contact'">Contact</div>
+    <div style="margin-left:auto; display:flex; gap:15px;">
+        <button id="langToggleBtn" onclick="toggleLanguage()">English</button>
+        <button id="modeBtn" onclick="toggleMode()">深色模式</button>
     </div>
 </header>
 
 <!-- BACK BUTTON -->
-<a class="back-btn" href="index.html" data-lang="zh">← 返回首頁</a>
-<a class="back-btn" href="index.html" data-lang="en">← Back to Home</a>
+<button class="back-button" onclick="location.href='index.html'">
+    ← Back
+</button>
 
 <!-- MAIN CONTENT -->
 <section>
-    <h2 data-lang="zh">P1 產品頁面</h2>
-    <h2 data-lang="en">P1 Product Page</h2>
+    <h2 data-lang="zh">應用範圍 Application</h2>
+    <h2 data-lang="en">Applications</h2>
 
     <p data-lang="zh">
-        這裡是 P1 產品的詳細介紹頁面，你可以在此放入更多資訊、圖片或規格表。
+        各類型隔間牆面適用，如辦公大樓、餐廳、百貨公司、醫院、工業廠房、娛樂場所(KTV)、餐廳、住宅等。<br>
+        普通乾式隔間工法利用 U 型下槽搭配 2 支立柱組成牆面。
     </p>
 
     <p data-lang="en">
-        This is the detailed page for product P1. You can place additional information, images, and specifications here.
+        Fit for interior and exterior walls of any building, including office buildings, restaurants, department stores,
+        hospitals, factories, entertainment establishments (e.g., KTV parlors), shops, and residences.
+        A standard dry-wall partition frame is formed with U tracks combined with studs.
+    </p>
+
+    <div class="img-placeholder"></div>
+</section>
+
+
+<section>
+    <h2 data-lang="zh">規格 Specification</h2>
+    <h2 data-lang="en">Specification</h2>
+
+    <p data-lang="zh">
+        兩側立腳邊可加強防滑，防止於施工時滑動；依據板材特性及封版困難度選用不同立腳邊。
+    </p>
+
+    <p data-lang="en">
+        Anti-slide points are installed on flanges on both sides, preventing sliding during installation.  
+        Different flange types may be selected based on sheet characteristics and sealing difficulty.
     </p>
 </section>
 
-<!-- FOOTER -->
+<hr>
+
+<section>
+    <h2 data-lang="zh">C 型立柱 C Stud</h2>
+    <h2 data-lang="en">C Stud</h2>
+
+    <div class="img-placeholder"></div>
+
+    <table>
+        <tr><th>Model</th><th>A (mm)</th><th>B (mm)</th><th>Thickness (mm)</th></tr>
+        <tr><td>C-40 (1-5/8”)</td><td>40</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-50 (2”)</td><td>50</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-60 (2-1/3”)</td><td>60</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-65 (2-1/2”)</td><td>65</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-70 (2-3/4”)</td><td>70</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.00</td></tr>
+        <tr><td>C-75 (3”)</td><td>75</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-80 (3-1/8”)</td><td>80</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-88 (3-1/2”)</td><td>88</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-92 (3-5/8”)</td><td>92</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-100 (4”)</td><td>100</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-120 (4-3/4”)</td><td>120</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-125 (5”)</td><td>125</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-132 (5-1/5”)</td><td>132</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-150 (6”)</td><td>150</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-200 (8”)</td><td>200</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<section>
+    <h2 data-lang="zh">U 型上下槽 U Track</h2>
+    <h2 data-lang="en">U Track</h2>
+
+    <div class="img-placeholder"></div>
+
+    <table>
+        <tr><th>Model</th><th>A (mm)</th><th>B (mm)</th><th>Thickness (mm)</th></tr>
+        <tr><td>U-42 (1-5/8”)</td><td>42</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-52 (2”)</td><td>52</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-62 (2-1/3”)</td><td>62</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-67 (2-1/2”)</td><td>67</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-72 (2-3/4”)</td><td>72</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-77 (3”)</td><td>77</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-82 (3-1/8”)</td><td>82</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-90 (3-1/2”)</td><td>90</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-94 (3-5/8”)</td><td>94</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-102 (4”)</td><td>102</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-122 (4-3/4”)</td><td>122</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-127 (5”)</td><td>127</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-152 (6”)</td><td>152</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-202 (8”)</td><td>202</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<section>
+    <h2 data-lang="zh">CP 型立柱 CP Stud</h2>
+    <h2 data-lang="en">CP Stud</h2>
+
+    <div class="img-placeholder"></div>
+
+    <table>
+        <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
+        <tr><td>CP-40 (1-5/8)</td><td>40</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-50 (2”)</td><td>50</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-60 (2-1/3”)</td><td>60</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-65 (2-1/2”)</td><td>65</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-75 (3”)</td><td>75</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-92 (3-5/8”)</td><td>92</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-100 (4”)</td><td>100</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-125 (5”)</td><td>125</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-150 (6”)</td><td>150</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-175 (7”)</td><td>175</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-200 (8”)</td><td>200</td><td>25-70</td><td>0.80–2.50</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<section>
+    <h2 data-lang="zh">H 型立柱 H Stud</h2>
+    <h2 data-lang="en">H Stud</h2>
+
+    <div class="img-placeholder"></div>
+
+    <table>
+        <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
+        <tr><td>H-51 (2”)</td><td>51</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-65 (2-1/2”)</td><td>65</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-75 (3”)</td><td>75</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-92 (3-5/8”)</td><td>92</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-100 (4”)</td><td>100</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-125 (5”)</td><td>125</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-150 (6”)</td><td>150</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-200 (8”)</td><td>200</td><td>35</td><td>0.8–2.0</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<section>
+    <h2 data-lang="zh">CH 型立柱 CH Stud</h2>
+    <h2 data-lang="en">CH Stud</h2>
+
+    <div class="img-placeholder"></div>
+
+    <table>
+        <tr><th>Model</th><th>A</th><th>B</th><th>C</th><th>Thickness</th></tr>
+        <tr><td>CH-45 (1-3/4”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-65 (2-1/2”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-75 (3”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-92 (3-5/8”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-100 (4”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-150 (6”)</td><td>35</td><td>25</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-200 (8”)</td><td>35</td><td>30</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-230 (9”)</td><td>35</td><td>30</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
+    </table>
+</section>
+
+<hr>
+
+<section>
+    <h2 data-lang="zh">J 型槽 J Track</h2>
+    <h2 data-lang="en">J Track</h2>
+
+    <div class="img-placeholder"></div>
+
+    <table>
+        <tr><th>Model</th><th>A</th><th>B</th><th>C</th><th>Thickness</th></tr>
+        <tr><td>J-42</td><td>42</td><td>57</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-52</td><td>52</td><td>57</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-62</td><td>62</td><td>82</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-67</td><td>67</td><td>87</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-72</td><td>75</td><td>95</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-77</td><td>42</td><td>62</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-82</td><td>42</td><td>62</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-90</td><td>90</td><td>110</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-94</td><td>94</td><td>114</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-102</td><td>102</td><td>122</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-120</td><td>122</td><td>142</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-127</td><td>125</td><td>145</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-132</td><td>150</td><td>175</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-152</td><td>152</td><td>182</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-202</td><td>202</td><td>222</td><td>25.4</td><td>0.6–2.3</td></tr>
+        <tr><td>J-232</td><td>232</td><td>252</td><td>25.4</td><td>0.6–2.3</td></tr>
+    </table>
+
+    <div class="img-placeholder"></div>
+</section>
+
 <footer>
     <p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
     <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
