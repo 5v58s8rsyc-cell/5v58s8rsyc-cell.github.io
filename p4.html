@@ -7,12 +7,14 @@
 <style>
 html { scroll-padding-top:140px; }
 body {
-    margin:0; 
+    margin:0;
     font-family:Arial, sans-serif;
     line-height:1.6;
     background:#ffffff;
     color:#222;
+    transition:0.3s ease;
 }
+body.dark { background:#0f172a; color:#e2e8f0; }
 
 /* HEADER */
 header {
@@ -35,43 +37,56 @@ header {
 }
 header h1 { margin:0; font-size:32px; }
 
-/* BACK BUTTON */
-.back-button {
-    position:absolute;
-    top:100px; left:20px;
-    background:#2760A8;
-    color:white;
+#langBtn, #modeBtn {
+    padding:8px 14px;
     border:none;
-    padding:10px 18px;
+    background:white;
+    color:#2760A8;
     border-radius:6px;
     cursor:pointer;
     font-weight:bold;
 }
 
+/* FIXED SIDE-BACK */
+.side-back {
+    position: fixed;
+    top: 120px;
+    left: 0;
+    width: 20px;
+    height: 60px;
+    background: #568cce;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:0 10px 10px 0;
+    cursor:pointer;
+    z-index:2000;
+}
+body.dark .side-back { background:#1e3a5f; }
+
 /* SECTION */
 section { padding:40px; }
 
-/* PLACEHOLDER IMG */
-.img-placeholder {
-    width:100%; height:200px;
-    background:#ccc;
-    border-radius:12px;
-    margin:15px 0;
-}
-
-/* TABLES */
-table {
+/* IMAGES */
+.img-wide {
     width:100%;
-    border-collapse:collapse;
-    margin:20px 0;
-}
-table th, table td {
-    border:1px solid #555;
-    padding:10px;
-    text-align:center;
+    max-width:800px;
+    border-radius:12px;
+    display:block;
+    margin:20px auto;
 }
 
-/* FOOTER */
+/* DIVIDER */
+.divider {
+    width:100%;
+    height:1px;
+    background:#ccc;
+    margin:60px 0;
+}
+
 footer {
     background:#003066;
     color:white;
@@ -83,17 +98,33 @@ footer {
 
 <script>
 let currentLang="zh";
+
 function toggleLanguage(){
     currentLang = currentLang==="zh" ? "en" : "zh";
     document.getElementById("langBtn").innerText =
         currentLang==="zh" ? "English" : "中文";
     document.querySelectorAll("[data-lang]").forEach(el=>{
-        el.style.display = el.getAttribute("data-lang")===currentLang ? "block":"none";
+        el.style.display = (el.getAttribute("data-lang")===currentLang) ? "block" : "none";
     });
+    document.getElementById("modeBtn").innerText =
+        document.body.classList.contains("dark")
+        ? (currentLang==="zh" ? "淺色模式" : "Light Mode")
+        : (currentLang==="zh" ? "深色模式" : "Dark Mode");
 }
-document.addEventListener("DOMContentLoaded", ()=>{ toggleLanguage(); toggleLanguage(); });
-</script>
 
+function toggleMode(){
+    document.body.classList.toggle("dark");
+    document.getElementById("modeBtn").innerText =
+        document.body.classList.contains("dark")
+        ? (currentLang==="zh" ? "淺色模式" : "Light Mode")
+        : (currentLang==="zh" ? "深色模式" : "Dark Mode");
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    toggleLanguage(); toggleLanguage();
+    toggleMode(); toggleMode();
+});
+</script>
 </head>
 
 <body>
@@ -104,164 +135,148 @@ document.addEventListener("DOMContentLoaded", ()=>{ toggleLanguage(); toggleLang
         <h1 data-lang="zh">暗架天花系列</h1>
         <h1 data-lang="en">Concealed Grid Ceiling Series</h1>
     </div>
-    <button id="langBtn" onclick="toggleLanguage()" style="margin-left:auto;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;">
-        English
-    </button>
+
+    <div style="margin-left:auto; display:flex; gap:15px;">
+        <button id="langBtn" onclick="toggleLanguage()">English</button>
+        <button id="modeBtn" onclick="toggleMode()">深色模式</button>
+    </div>
 </header>
 
-<button class="back-button" onclick="location.href='index.html'">← Back</button>
+<div class="side-back" onclick="location.href='index.html'">←</div>
 
-<!-- ========================== CONTENT ============================== -->
+<!-- ========================================================= -->
+<!-- ===================== FIRST SECTION ===================== -->
+<!-- ========================================================= -->
 
 <section>
-<h2 data-lang="zh">產品特性 Features</h2>
-<h2 data-lang="en">Features</h2>
+    <h2 data-lang="zh">暗架天花 — 產品特性</h2>
+    <h2 data-lang="en">Concealed Grid — Features</h2>
 
-<p data-lang="zh">
-● 暗架天花板安裝於板上，不會看到骨架，給整個辦公環境或是公共空間更加簡約及舒適。<br>
-● 因使用傳統施工方式，現場安裝施工停頓時間短，損失少，且易於施工與維修。<br>
-● 使用少量配件，節省人工與材料成本。<br>
-● 施工流程明確，安裝過程可以更精準地控制。<br>
-● 搭配 3'x6' 或 3'x8' 天花板，工期更精簡。<br>
-● 採用 ASTM: C635-00 FURRING BAR SUSPENSION SYSTEM 之升降天花板工程。<br>
-● 吊掛配件有：主支撐架、吊桿、L 型邊條、雙邊條、7 字邊條、U 字邊條等。
-</p>
+    <p data-lang="zh">
+        ● 暗支撐架上附有卡榫，可直接與暗主架卡合，組合拆卸容易；省卻傳統型之各項配件（三齒、二齒）組裝增加之工時。<br>
+        ● 暗支撐架上衝有吊筋口，可由吊筋直接固定，省卻傳統型之配件（吊鉤器）及工時。<br>
+        ● 暗支撐架上每呎有六對卡榫，由全自動機械生產，精密度高，暗主架排列位置可由卡榫直接定位，無需為配合板材左右調整移動，節省封板工時。<br>
+        ● 改變傳統施工法，骨架安裝與封板可同步進行，工時運用靈活，工程進度易掌握。<br>
+    </p>
 
-<p data-lang="en">
-Concealed Grid is installed on the top of ceiling tile.  
-When looking at the ceiling, we can’t see the ceiling grid.  
-Using fewer accessories saves working time and expenses.  
-More precise installation distance ensures loading capacity.  
-Tile ceiling installation and ceiling panel could both be installed at the same time, easy to control.  
-Furring bar system conforms to ASTM C635-00 standard.
-</p>
+    <p data-lang="en">
+        ● Locking tabs on the concealed furring bar allow direct attachment to the carrying channel, making assembly and removal easy while eliminating extra accessories used in traditional systems.<br>
+        ● Integrated hanger holes allow rods to be fixed directly, removing the need for old-style hook accessories and saving installation time.<br>
+        ● Six pairs of precision locking tabs per foot allow fast, accurate channel positioning without lateral adjustments, reducing board installation time.<br>
+        ● Compared to traditional installation methods, frame installation and panel attachment can proceed simultaneously, increasing flexibility and improving scheduling efficiency.<br>
+    </p>
 
-<div class="img-placeholder"></div>
+    <!-- SPECIAL TITLES -->
+    <h3><span data-lang="zh"><b>施工效率提升一倍以上</b></span><span data-lang="en"><b>Double Installation Efficiency</b></span></h3>
+
+    <p data-lang="zh">
+        ● 省卻傳統配件組合，骨架緊密結合不脫落，品質易掌控。<br>
+        ● 卡榫節距精密，可搭配英制3'x6'、4'x8'與公制1.2m×2.4m板材，提高整平補土品質。<br>
+        ● 符合 ASTM C635-00 均佈載重試驗。<br>
+    </p>
+
+    <p data-lang="en">
+        ● Eliminates traditional accessories, ensuring tight frame connection and stable construction quality.<br>
+        ● Precision pitch allows compatibility with 3’×6’, 4’×8’, and 1.2m×2.4m boards, improving leveling and finishing quality.<br>
+        ● Complies with ASTM C635-00 loading test requirements.<br>
+    </p>
+
+    <h3><span data-lang="zh"><b>產品精密，提高施工品質</b></span><span data-lang="en"><b>High Precision for Better Quality</b></span></h3>
+
+    <p data-lang="zh">
+        精密加工之骨架系統使組裝更密合，提升平整度與穩定性。
+    </p>
+    <p data-lang="en">
+        Precisely engineered structural components provide tighter assembly, improved flatness, and better stability.
+    </p>
+
+    <h3><span data-lang="zh"><b>選擇多樣式</b></span><span data-lang="en"><b>Multiple Configuration Options</b></span></h3>
+
+    <p data-lang="zh">
+        不同規格、厚度與組合方式可搭配不同載重之天花板。
+    </p>
+    <p data-lang="en">
+        Various specifications, thicknesses, and installation methods accommodate different ceiling load requirements.
+    </p>
+
+
+    <!-- APPLICATION -->
+    <h2 data-lang="zh">適用範圍</h2>
+    <h2 data-lang="en">Applications</h2>
+
+    <p data-lang="zh">
+        辦公室、醫院、百貨公司、會議室、餐廳、娛樂場所、住宅等。
+    </p>
+
+    <p data-lang="en">
+        Offices, hospitals, department stores, meeting rooms, restaurants, entertainment venues, and residential buildings.
+    </p>
+
+    <img src="cgcs1.png" class="img-wide">
+    <img src="cgcs2.png" class="img-wide">
+
+    <h3 data-lang="zh">每坪用料分析</h3>
+    <h3 data-lang="en">Material Usage Analysis</h3>
+
+    <img src="cgcs3.png" class="img-wide">
+
+    <h3 data-lang="zh">暗架組合方式及容許載重</h3>
+    <h3 data-lang="en">Assembly & Loading Capacity</h3>
+
+    <img src="cgcs4.png" class="img-wide">
+
+    <h3 data-lang="zh">暗架天花組合示意圖</h3>
+    <h3 data-lang="en">Overview of Concealed Ceiling Assembly</h3>
+
+    <img src="cgcs5.png" class="img-wide">
 </section>
 
+<div class="divider"></div>
+
+<!-- ========================================================= -->
+<!-- ==================== SECOND SECTION ===================== -->
+<!-- ========================================================= -->
 
 <section>
-<h2 data-lang="zh">適用範圍 Application</h2>
-<h2 data-lang="en">Applications</h2>
+    <h2 data-lang="zh">卡U鋼板／防颱型企口板 — 產品特性</h2>
+    <h2 data-lang="en">U Type / Anti-typhoon Strip Ceiling — Features</h2>
 
-<p data-lang="zh">
-辦公室、醫院、百貨公司、會議室、餐廳、娛樂場所、住宅等。
-</p>
+    <p data-lang="zh">
+        ● 防火、防潮、防鏽蝕，不退色，耐候性佳。<br>
+        ● 表面塗裝均勻，色澤高雅，提供多種色彩與質感選擇。<br>
+        ● 組合方式多樣，可依空間需求變化線條與造型。<br>
+        ● 安裝快速，維護容易，適用於室內與半戶外使用。<br>
+    </p>
 
-<p data-lang="en">
-Office, hospital, department store, meeting room, restaurant and house etc.
-</p>
+    <p data-lang="en">
+        ● Fire-resistant, moisture-resistant, anti-corrosive, and fade-resistant with strong weather durability.<br>
+        ● Uniform coating with elegant textures and multiple color options.<br>
+        ● Flexible configurations allow varied lines and design patterns according to space requirements.<br>
+        ● Fast installation with easy maintenance; suitable for indoor or semi-outdoor applications.<br>
+    </p>
 
-<div class="img-placeholder"></div>
-</section>
+    <h2 data-lang="zh">適用範圍</h2>
+    <h2 data-lang="en">Applications</h2>
 
-<!-- ============================================================= -->
-<section>
-<h2 data-lang="zh">暗支撐架 Carrying Channel</h2>
-<h2 data-lang="en">Carrying Channel</h2>
+    <p data-lang="zh">
+        禮堂、體育館、學校、商場、車站、加油站、廠房、走道、陽台及各類公共空間。
+    </p>
+    <p data-lang="en">
+        Auditoriums, gymnasiums, schools, shopping malls, stations, gas stations, factories, corridors, balconies, and various public areas.
+    </p>
 
-<div class="img-placeholder"></div>
+    <h3 data-lang="zh">卡U鋼板</h3>
+    <h3 data-lang="en">U Type Strip Ceiling</h3>
+    <img src="cgcs6.png" class="img-wide">
 
-<p data-lang="zh">
-● 採用熱浸鍍鋅鋼帶。<br>
-● 採用對接器連接。
-</p>
-
-<p data-lang="en">
-● Made from hot dipped galvanized steel.<br>
-● Carrying Channel Joint connects channels without screws.
-</p>
-
-<div class="img-placeholder"></div>
-
-<h3 data-lang="zh">每坪用料分析</h3>
-<h3 data-lang="en">Material Usage Analysis</h3>
-
-<table>
-<tr><th></th><th>一般使用場合</th><th>輕隔間使用場合</th><th>增強型場合</th></tr>
-<tr><th>暗主架間距</th><td>108cm</td><td>109cm</td><td>109cm</td></tr>
-<tr><th>暗橫架間距</th><td>81cm</td><td>82cm</td><td>82cm</td></tr>
-<tr><th>吊掛點</th><td>約 3 支/坪</td><td>2.75 支/坪</td><td>約 4 支/坪</td></tr>
-</table>
-
-<div class="img-placeholder"></div>
-
-
-<h3 data-lang="zh">組合方式及容許載重量</h3>
-<h3 data-lang="en">Assembly & Loading Capacity</h3>
-
-<h4 data-lang="zh">基本型</h4>
-<h4 data-lang="en">Basic</h4>
-<div class="img-placeholder"></div>
-
-<table>
-<tr><th></th><th>Height</th><th>Thickness</th><th>Max Loading (kg/m²)</th></tr>
-<tr><td>暗主架</td><td>19</td><td>0.4</td><td>21.8</td></tr>
-<tr><td>暗橫架</td><td>27</td><td>0.4</td><td>28</td></tr>
-</table>
-
-<h4 data-lang="zh">加強型</h4>
-<h4 data-lang="en">Enhanced</h4>
-<div class="img-placeholder"></div>
-
-<table>
-<tr><th></th><th>Max Loading (kg/m²)</th></tr>
-<tr><td>暗主架</td><td>38</td></tr>
-</table>
-
-<div class="img-placeholder"></div>
-</section>
-
-<!-- ============================================================= -->
-<section>
-<h2 data-lang="zh">吊頂組合示意圖</h2>
-<h2 data-lang="en">Overview of Ceiling Assembly</h2>
-
-<div class="img-placeholder" style="height:260px;"></div>
-</section>
-
-<!-- ============================================================= -->
-<section>
-<h2 data-lang="zh">卡U鋼板 U Type Strip Ceiling</h2>
-<h2 data-lang="en">U Type Strip Ceiling</h2>
-
-<div class="img-placeholder"></div>
-
-<table>
-<tr><th>Model</th><th>Material</th><th>Thickness</th><th>Panel Width</th><th>Installation Width</th></tr>
-<tr>
-<td>84A</td>
-<td>Prepainted Steel / Aluminum</td>
-<td>0.5 mm</td>
-<td>84 / 109 / 134 mm</td>
-<td>100 / 125 / 150 mm</td>
-</tr>
-</table>
-
-<div class="img-placeholder"></div>
-
-<h2 data-lang="zh">防颱型企口板 Anti-typhoon Type Strip Ceiling</h2>
-<h2 data-lang="en">Anti-typhoon Type Strip Ceiling</h2>
-
-<div class="img-placeholder"></div>
-
-<table>
-<tr><th>Model</th><th>Material</th><th>Thickness</th><th>Panel Width</th><th>Installation Width</th></tr>
-<tr>
-<td>85C</td>
-<td>Prepainted Steel / Aluminum</td>
-<td>0.5 mm</td>
-<td>85 / 100 / 125 / 150 mm<br>無縫 Seamless</td>
-<td>100 mm</td>
-</tr>
-</table>
-
-<div class="img-placeholder"></div>
+    <h3 data-lang="zh">防颱型企口板</h3>
+    <h3 data-lang="en">Anti-typhoon Type Strip Ceiling</h3>
+    <img src="cgcs7.png" class="img-wide">
 </section>
 
 <footer>
-<p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
-<p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
+    <p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
+    <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
 </footer>
 
 </body>

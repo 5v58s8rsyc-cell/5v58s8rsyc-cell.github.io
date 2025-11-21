@@ -37,20 +37,37 @@ header {
 }
 header h1 { margin: 0; font-size: 32px; }
 
-/* BACK BUTTON */
-.back-button {
-    position: absolute;
-    left: 20px;
-    top: 100px;
+/* VERTICAL FIXED SIDE BACK BUTTON */
+.side-back {
+    position: fixed;
+    top: 120px;          /* Adjust if needed */
+    left: 0;
+    width: 20px;
+    height: 60px;
+
     background: #2760A8;
-    color: #fff;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
-    cursor: pointer;
+    color: white;
+    font-size: 20px;
     font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    z-index: 2000;
+
+    transition: background 0.2s ease;
 }
-body.dark .back-button { background: #1e3a5f; }
+
+body.dark .side-back {
+    background: #1e3a5f;
+}
+
+.side-back:hover {
+    background: #1f4f8d;
+}
 
 /* CONTENT SECTIONS */
 section { padding: 40px; }
@@ -71,13 +88,20 @@ body.dark table th, body.dark table td {
     border-color: #334155;
 }
 
-/* PLACEHOLDER FOR IMAGES */
-.img-placeholder {
+/* IMAGES */
+.full-img {
     width: 100%;
-    height: 200px;
-    background: #ccc;
+    max-width: 1000px;
+    display: block;
+    margin: 30px auto;
     border-radius: 12px;
-    margin: 15px 0 30px 0;
+}
+
+/* THIN DIVIDER */
+.divider {
+    border: none;
+    border-top: 1px solid #dddddd;
+    margin: 40px 0;
 }
 
 /* FOOTER */
@@ -110,7 +134,7 @@ function toggleLanguage() {
 
 function switchLang(lang) {
     document.querySelectorAll("[data-lang]").forEach(e => {
-        e.style.display = (e.getAttribute("data-lang") === lang) ? "block" : "none";
+        e.style.display = e.getAttribute("data-lang") === lang ? "block" : "none";
     });
 }
 
@@ -128,6 +152,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <body>
 
+<!-- LEFT SIDE VERTICAL BACK BUTTON -->
+<div class="side-back" onclick="location.href='index.html'">←</div>
+
 <!-- HEADER -->
 <header>
     <img src="logo.jpeg" class="header-logo" onclick="location.href='index.html'">
@@ -143,218 +170,66 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 </header>
 
-<!-- BACK BUTTON -->
-<button class="back-button" onclick="location.href='index.html'">← Back</button>
-
 <!-- ================== PAGE CONTENT START ================== -->
 
-<!-- EXPANDED METAL MESH -->
+<!-- APPLICATION -->
 <section>
-    <h2 data-lang="zh">I 溝有筋擴張網 Expanded Metal Mesh</h2>
-    <h2 data-lang="en">Expanded Metal Mesh</h2>
-
-    <div class="img-placeholder"></div>
-
-    <table>
-        <tr><th data-lang="zh">材質</th><td>JIS G3302</td></tr>
-        <tr><th data-lang="zh">厚度</th><td>0.4 mm ± 0.005mm</td></tr>
-        <tr><th data-lang="zh">規格</th><td>60.6 cm x 242.4 cm</td></tr>
-        <tr><th data-lang="zh">網目</th><td>6.2 x 2.1mm (直徑 2.0–2.3mm)</td></tr>
-        <tr><th data-lang="zh">溝距</th><td>60 mm</td></tr>
-    </table>
-</section>
-
-<hr>
-
-<!-- PUNCHED C-STUD -->
-<section>
-    <h2 data-lang="zh">沖孔柱 Punched C-Stud</h2>
-    <h2 data-lang="en">Punched C-Stud</h2>
-
-    <div class="img-placeholder"></div>
-
-    <table>
-        <tr>
-            <th>Model</th><th>A (mm)</th><th>W (mm)</th><th>Thickness</th>
-        </tr>
-        <tr><td>CF-45 (1-1/2")</td><td>65</td><td>18</td><td>1.0–1.2</td></tr>
-        <tr><td>CF-75 (3")</td><td>92</td><td>18</td><td>1.0–1.2</td></tr>
-        <tr><td>CF-92 (3-5/8")</td><td>92</td><td>18</td><td>1.0–1.2</td></tr>
-        <tr><td>CF-100 (4")</td><td>102</td><td>18</td><td>1.0–1.2</td></tr>
-        <tr><td>CF-125 (5")</td><td>125</td><td>45</td><td>1.0–1.2</td></tr>
-        <tr><td>CF-150 (6")</td><td>150</td><td>45</td><td>1.0–1.2</td></tr>
-        <tr><td>CF-200 (8")</td><td>200</td><td>65</td><td>1.0–1.2</td></tr>
-    </table>
-</section>
-
-<hr>
-
-<!-- SERIES OF STUDS -->
-<section>
-    <h2 data-lang="zh">點焊立柱系列產品</h2>
-    <h2 data-lang="en">Series of Studs (Welded / Angled / C-shaped)</h2>
-
-    <div class="img-placeholder"></div>
-
-    <h3 data-lang="zh">點焊立柱 Welded</h3>
-    <h3 data-lang="en">Welded Stud</h3>
-
-    <table>
-        <tr><th>Material</th><td>Hot Rolled Steel JIS G3131 / Cold Rolled Steel JIS G3141 / Galvanized Steel JIS G3302</td></tr>
-        <tr><th>Thickness</th><td>1.2mm ± 0.005mm</td></tr>
-        <tr><th>Length</th><td>4m (可議)</td></tr>
-        <tr><th>Height</th><td>20mm / 25mm</td></tr>
-        <tr><th>Spec</th><td>10 / 12 / 13 / 15 / 17 / 18 / 20 / 23 / 30 cm</td></tr>
-    </table>
-
-    <br>
-
-    <h3 data-lang="zh">角鐵 Angled Iron</h3>
-    <h3 data-lang="en">Angled Iron</h3>
-
-    <table>
-        <tr><th>Thickness</th><td>1.2mm ± 0.005mm</td></tr>
-        <tr><th>Spec</th><td>L: 25mm x H: 21mm ± 1mm</td></tr>
-    </table>
-
-    <br>
-
-    <h3 data-lang="zh">單Ｔ C-shaped Angled Iron</h3>
-    <h3 data-lang="en">C-shaped Angled Iron</h3>
-
-    <table>
-        <tr><th>Thickness</th><td>1.2mm ± 0.005mm</td></tr>
-        <tr><th>Spec</th><td>W: 52mm x H: 41mm ± 1mm</td></tr>
-    </table>
-</section>
-
-<hr>
-
-<!-- STUD PUNCHING -->
-<section>
-    <h2 data-lang="zh">立柱沖孔規格及加強樁柱</h2>
-    <h2 data-lang="en">Stud Punching & Channel</h2>
-
-    <div class="img-placeholder"></div>
+    <h2 data-lang="zh">應用 Application</h2>
+    <h2 data-lang="en">Application</h2>
 
     <p data-lang="zh">
-        為配合施工應用，立柱沖孔規格如下：  
-        立柱 56mm 立柱 76mm、96mm、116mm，沖孔孔徑 20mm/25mm。  
-        38mm、25mm、19mm 隔間工程適用。
+        適用於混凝土施工，因其灌漿程序可節省施工時間與材料。
     </p>
 
     <p data-lang="en">
-        To meet construction needs, stud punching is used at stud sizes 56mm, 76mm, 96mm, 116mm with hole sizes 20mm / 25mm.  
-        Punch types 38mm, 25mm, 19mm are suitable for partition construction.
+        Suitable for concrete. Due to the grouting procedure, it saves construction time and materials.
+    </p>
+</section>
+
+
+<!-- FEATURES -->
+<section>
+    <h2 data-lang="zh">特性 Features</h2>
+    <h2 data-lang="en">Features</h2>
+
+    <p data-lang="zh">
+        ● 用於混凝土與壁板施工，具抗壓、抗彎曲、抗剪強度。<br>
+        ● 能支撐牆體，防止坍塌。<br>
+        ● 節省補強與校直作業成本，降低施工風險。<br>
+        ● 符合 ROC 建築技術規則 / ACI 347 / JIS / AISC / CNS 標準。
     </p>
 
-    <h3 data-lang="zh">加強樁柱 Channel</h3>
-    <h3 data-lang="en">Reinforced Channel</h3>
-
-    <table>
-        <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
-        <tr><td>N-25</td><td>N/A</td><td>33</td><td>0.95</td></tr>
-        <tr><td>N-35</td><td>N/A</td><td>40</td><td>0.95</td></tr>
-        <tr><td>N-15</td><td>N/A</td><td>25</td><td>0.95</td></tr>
-    </table>
-
+    <p data-lang="en">
+        ● Used for construction; holds up concrete and wallboard, and is resistant to compression, bending and shear.<br>
+        ● Supports wall structure and prevents collapse.<br>
+        ● Saves topping and aligning costs while reducing risk of accidents.<br>
+        ● Conforms to ROC Technical Regulations / ACI Committee 347 / JIS / AISC / CNS standards.
+    </p>
 </section>
 
-<hr>
+<hr class="divider">
 
-<!-- TRIMMING PROTECTION -->
+<!-- FULL-WIDTH IMAGES -->
 <section>
-    <h2 data-lang="zh">隔間板材之修邊保護</h2>
-    <h2 data-lang="en">Trimming Protection</h2>
+    <h2 data-lang="zh">施工示意圖</h2>
+    <h2 data-lang="en">Construction Illustrations</h2>
 
-    <div class="img-placeholder"></div>
+    <img src="pfs1.png" class="full-img">
+    <hr class="divider">
 
-    <h3 data-lang="zh">護角 Corner</h3>
-    <h3 data-lang="en">Corner</h3>
+    <img src="pfs2.png" class="full-img">
+    <hr class="divider">
 
-    <table>
-        <tr><th>Model</th><th>W</th><th>Spec</th><th>Suitable Material</th></tr>
-        <tr><td>V-40</td><td>40</td><td>40 x 40</td><td>9, 12, 15</td></tr>
-        <tr><td>V-25</td><td>25</td><td>25 x 25</td><td>9</td></tr>
-    </table>
+    <img src="pfs3.png" class="full-img">
+    <hr class="divider">
 
-    <h3 data-lang="zh">收邊節角 Angle</h3>
-    <h3 data-lang="en">Angle</h3>
+    <img src="pfs4.png" class="full-img">
+    <hr class="divider">
 
-    <table>
-        <tr><th>Model</th><th>W</th><th>Spec</th><th>Suitable Material</th></tr>
-        <tr><td>VL-15</td><td>15</td><td>34.2</td><td>15</td></tr>
-        <tr><td>VL-12</td><td>12.5</td><td>37.5</td><td>12</td></tr>
-    </table>
+    <img src="pfs5.png" class="full-img">
 </section>
 
-<hr>
-
-<!-- ENCASEMENT -->
-<section>
-    <h2 data-lang="zh">柱體包邊 Columns & Fence</h2>
-    <h2 data-lang="en">Columns & Fence</h2>
-
-    <div class="img-placeholder"></div>
-
-    <table>
-        <tr><th>Model</th><th>A</th><th>B</th><th>C</th></tr>
-        <tr><td>C-40</td><td>A</td><td>B</td><td>—</td></tr>
-    </table>
-</section>
-
-<hr>
-
-<!-- FINISHING IN PARTITION -->
-<section>
-    <h2 data-lang="zh">隔間樑端收頭</h2>
-    <h2 data-lang="en">Finishing in Partition</h2>
-
-    <div class="img-placeholder"></div>
-
-    <h3 data-lang="zh">隔間樑端收頭</h3>
-    <h3 data-lang="en">Finishing of Partition Terminals</h3>
-
-    <div class="img-placeholder"></div>
-
-    <h3 data-lang="zh">RC 隔間樑端收頭</h3>
-    <h3 data-lang="en">RC Finishing of Partition Terminals</h3>
-
-    <div class="img-placeholder"></div>
-</section>
-
-<hr>
-
-<!-- L & T BEND -->
-<section>
-    <h2 data-lang="zh">隔間L型轉角 L Bend</h2>
-    <h2 data-lang="en">L Bend</h2>
-
-    <div class="img-placeholder"></div>
-
-    <h2 data-lang="zh">隔間T型轉角 T Bend</h2>
-    <h2 data-lang="en">T Bend</h2>
-
-    <div class="img-placeholder"></div>
-</section>
-
-<hr>
-
-<!-- ACCESSORIES -->
-<section>
-    <h2 data-lang="zh">配件類 Accessories</h2>
-    <h2 data-lang="en">Accessories</h2>
-
-    <h3 data-lang="zh">伸縮縫條 Expansion Seals</h3>
-    <h3 data-lang="en">Expansion Seals</h3>
-
-    <div class="img-placeholder"></div>
-
-    <h3 data-lang="zh">彈性橫樑 Resilient Channel</h3>
-    <h3 data-lang="en">Resilient Channel</h3>
-
-    <div class="img-placeholder"></div>
-</section>
+<hr class="divider">
 
 <!-- FOOTER -->
 <footer>

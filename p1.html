@@ -38,20 +38,37 @@ header {
 }
 header h1 { margin: 0; font-size: 36px; }
 
-/* LEFT BACK BUTTON */
-.back-button {
-    position: absolute;
-    left: 20px;
-    top: 100px;
+/* VERTICAL FIXED SIDE BACK BUTTON */
+.side-back {
+    position: fixed;
+    top: 120px;
+    left: 0;
+    width: 20px;
+    height: 60px;
+
     background: #2760A8;
-    color: #fff;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
-    cursor: pointer;
+    color: white;
+    font-size: 20px;
     font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    z-index: 2000;
+
+    transition: background 0.2s ease;
 }
-body.dark .back-button { background: #1e3a5f; }
+
+body.dark .side-back {
+    background: #1e3a5f;
+}
+
+.side-back:hover {
+    background: #1f4f8d;
+}
 
 /* SECTION TITLES */
 section { padding: 40px; }
@@ -59,9 +76,12 @@ h2 { margin-top: 0; }
 
 /* TABLE STYLES */
 table {
-    width: 100%;
+    width: 60%;
     border-collapse: collapse;
+    font-size: 16px;
     margin: 20px 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 table th, table td {
     border: 1px solid #ccc;
@@ -72,13 +92,26 @@ body.dark table th, body.dark table td {
     border-color: #334155;
 }
 
-/* PLACEHOLDER IMAGE BOXES */
-.img-placeholder {
+/* PRODUCT IMAGES (BOTH PNGs SIDE-BY-SIDE) */
+.img-pair {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.img-pair img {
     width: 100%;
-    height: 200px;
-    background: #cccccc;
+    max-width: 500px;
     border-radius: 12px;
-    margin: 10px 0 25px 0;
+}
+
+/* FULL-WIDTH IMAGE */
+.product-img {
+    width: 100%;
+    max-width: 900px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
 }
 
 /* FOOTER */
@@ -101,6 +134,7 @@ function updateModeText() {
         ? (dark ? "淺色模式" : "深色模式")
         : (dark ? "Light Mode" : "Dark Mode");
 }
+
 function toggleLanguage() {
     currentLang = currentLang === "zh" ? "en" : "zh";
     document.getElementById("langToggleBtn").innerText =
@@ -108,11 +142,13 @@ function toggleLanguage() {
     switchLang(currentLang);
     updateModeText();
 }
+
 function switchLang(lang) {
     document.querySelectorAll("[data-lang]").forEach(e => {
         e.style.display = e.getAttribute("data-lang") === lang ? "block" : "none";
     });
 }
+
 function toggleMode() {
     document.body.classList.toggle("dark");
     updateModeText();
@@ -126,6 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
 </head>
 
 <body>
+
+<!-- LEFT FIXED VERTICAL BACK BUTTON -->
+<div class="side-back" onclick="location.href='index.html'">←</div>
 
 <!-- HEADER -->
 <header>
@@ -141,11 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 </header>
 
-<!-- BACK BUTTON -->
-<button class="back-button" onclick="location.href='index.html'">
-    ← Back
-</button>
-
 <!-- MAIN CONTENT -->
 <section>
     <h2 data-lang="zh">應用範圍 Application</h2>
@@ -157,14 +191,13 @@ document.addEventListener("DOMContentLoaded", () => {
     </p>
 
     <p data-lang="en">
-        Fit for interior and exterior walls of any building, including office buildings, restaurants, department stores,
-        hospitals, factories, entertainment establishments (e.g., KTV parlors), shops, and residences.
-        A standard dry-wall partition frame is formed with U tracks combined with studs.
+        Fit for interior and exterior walls of any building, including office buildings, restaurants,
+        department stores, hospitals, factories, entertainment establishments (e.g., KTV parlors),
+        shops, and residences. A standard drywall partition frame is formed with U tracks combined with studs.
     </p>
 
-    <div class="img-placeholder"></div>
+    <img src="application.png" class="product-img">
 </section>
-
 
 <section>
     <h2 data-lang="zh">規格 Specification</h2>
@@ -175,139 +208,169 @@ document.addEventListener("DOMContentLoaded", () => {
     </p>
 
     <p data-lang="en">
-        Anti-slide points are installed on flanges on both sides, preventing sliding during installation.  
+        Anti-slide points are installed on both flanges to prevent sliding during installation.
         Different flange types may be selected based on sheet characteristics and sealing difficulty.
     </p>
 </section>
 
 <hr>
 
+<!-- ================= C STUD ================= -->
+
 <section>
     <h2 data-lang="zh">C 型立柱 C Stud</h2>
     <h2 data-lang="en">C Stud</h2>
 
-    <div class="img-placeholder"></div>
+    <div class="img-pair">
+        <img src="cstud.png">
+        <img src="cstudd.png">
+    </div>
 
     <table>
         <tr><th>Model</th><th>A (mm)</th><th>B (mm)</th><th>Thickness (mm)</th></tr>
-        <tr><td>C-40 (1-5/8”)</td><td>40</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-50 (2”)</td><td>50</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-60 (2-1/3”)</td><td>60</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-65 (2-1/2”)</td><td>65</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-70 (2-3/4”)</td><td>70</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.00</td></tr>
-        <tr><td>C-75 (3”)</td><td>75</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-80 (3-1/8”)</td><td>80</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-88 (3-1/2”)</td><td>88</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-92 (3-5/8”)</td><td>92</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-100 (4”)</td><td>100</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-120 (4-3/4”)</td><td>120</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-125 (5”)</td><td>125</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-132 (5-1/5”)</td><td>132</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-150 (6”)</td><td>150</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
-        <tr><td>C-200 (8”)</td><td>200</td><td>25-45  50-100</td><td>0.5–2.3   2.0-5.0</td></tr>
+        <tr><td>C-40</td><td>40</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-50</td><td>50</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-60</td><td>60</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-65</td><td>65</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-70</td><td>70</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-75</td><td>75</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-80</td><td>80</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-88</td><td>88</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-92</td><td>92</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-100</td><td>100</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-120</td><td>120</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-125</td><td>125</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-132</td><td>132</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-150</td><td>150</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>C-200</td><td>200</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
     </table>
 </section>
 
 <hr>
+
+<!-- ================= U TRACK ================= -->
 
 <section>
     <h2 data-lang="zh">U 型上下槽 U Track</h2>
     <h2 data-lang="en">U Track</h2>
 
-    <div class="img-placeholder"></div>
+    <div class="img-pair">
+        <img src="utrack.png">
+        <img src="utrackd.png">
+    </div>
 
     <table>
         <tr><th>Model</th><th>A (mm)</th><th>B (mm)</th><th>Thickness (mm)</th></tr>
-        <tr><td>U-42 (1-5/8”)</td><td>42</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-52 (2”)</td><td>52</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-62 (2-1/3”)</td><td>62</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-67 (2-1/2”)</td><td>67</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-72 (2-3/4”)</td><td>72</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-77 (3”)</td><td>77</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-82 (3-1/8”)</td><td>82</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-90 (3-1/2”)</td><td>90</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-94 (3-5/8”)</td><td>94</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-102 (4”)</td><td>102</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-122 (4-3/4”)</td><td>122</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-127 (5”)</td><td>127</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-152 (6”)</td><td>152</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
-        <tr><td>U-202 (8”)</td><td>202</td><td>30-110  50-100</td><td>0.5–2.3  2.0-5.0</td></tr>
+        <tr><td>U-42</td><td>42</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-52</td><td>52</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-62</td><td>62</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-67</td><td>67</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-72</td><td>72</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-77</td><td>77</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-82</td><td>82</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-90</td><td>90</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-94</td><td>94</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-102</td><td>102</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-122</td><td>122</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-127</td><td>127</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-152</td><td>152</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><td>U-202</td><td>202</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
     </table>
 </section>
 
 <hr>
+
+<!-- ================= CP STUD ================= -->
 
 <section>
     <h2 data-lang="zh">CP 型立柱 CP Stud</h2>
     <h2 data-lang="en">CP Stud</h2>
 
-    <div class="img-placeholder"></div>
+    <div class="img-pair">
+        <img src="cpstud.png">
+        <img src="cpstudd.png">
+    </div>
 
     <table>
         <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
-        <tr><td>CP-40 (1-5/8)</td><td>40</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-50 (2”)</td><td>50</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-60 (2-1/3”)</td><td>60</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-65 (2-1/2”)</td><td>65</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-75 (3”)</td><td>75</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-92 (3-5/8”)</td><td>92</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-100 (4”)</td><td>100</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-125 (5”)</td><td>125</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-150 (6”)</td><td>150</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-175 (7”)</td><td>175</td><td>25-70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-200 (8”)</td><td>200</td><td>25-70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-40</td><td>40</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-50</td><td>50</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-60</td><td>60</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-65</td><td>65</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-75</td><td>75</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-92</td><td>92</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-100</td><td>100</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-125</td><td>125</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-150</td><td>150</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-175</td><td>175</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-200</td><td>200</td><td>25–70</td><td>0.80–2.50</td></tr>
     </table>
 </section>
 
 <hr>
+
+<!-- ================= H STUD ================= -->
 
 <section>
     <h2 data-lang="zh">H 型立柱 H Stud</h2>
     <h2 data-lang="en">H Stud</h2>
 
-    <div class="img-placeholder"></div>
+    <div class="img-pair">
+        <img src="hstud.png">
+        <img src="hstudd.png">
+    </div>
 
     <table>
         <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
-        <tr><td>H-51 (2”)</td><td>51</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-65 (2-1/2”)</td><td>65</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-75 (3”)</td><td>75</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-92 (3-5/8”)</td><td>92</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-100 (4”)</td><td>100</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-125 (5”)</td><td>125</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-150 (6”)</td><td>150</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-200 (8”)</td><td>200</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-51</td><td>51</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-65</td><td>65</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-75</td><td>75</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-92</td><td>92</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-100</td><td>100</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-125</td><td>125</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-150</td><td>150</td><td>35</td><td>0.8–2.0</td></tr>
+        <tr><td>H-200</td><td>200</td><td>35</td><td>0.8–2.0</td></tr>
     </table>
 </section>
 
 <hr>
+
+<!-- ================= CH STUD ================= -->
 
 <section>
     <h2 data-lang="zh">CH 型立柱 CH Stud</h2>
     <h2 data-lang="en">CH Stud</h2>
 
-    <div class="img-placeholder"></div>
+    <div class="img-pair">
+        <img src="chstud.png">
+        <img src="chstudd.png">
+    </div>
 
     <table>
         <tr><th>Model</th><th>A</th><th>B</th><th>C</th><th>Thickness</th></tr>
-        <tr><td>CH-45 (1-3/4”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-65 (2-1/2”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-75 (3”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-92 (3-5/8”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-100 (4”)</td><td>35</td><td>19</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-150 (6”)</td><td>35</td><td>25</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-200 (8”)</td><td>35</td><td>30</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-230 (9”)</td><td>35</td><td>30</td><td>25.4(1") 19(3/4") 13(1/2") 10(3/8") 7(1/4")</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-45</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-65</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-75</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-92</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-100</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-150</td><td>35</td><td>25</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-200</td><td>35</td><td>30</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
+        <tr><td>CH-230</td><td>35</td><td>30</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
     </table>
 </section>
 
 <hr>
 
+<!-- ================= J TRACK ================= -->
+
 <section>
     <h2 data-lang="zh">J 型槽 J Track</h2>
     <h2 data-lang="en">J Track</h2>
 
-    <div class="img-placeholder"></div>
+    <div class="img-pair">
+        <img src="jtrack.png">
+        <img src="jtrackd.png">
+    </div>
 
     <table>
         <tr><th>Model</th><th>A</th><th>B</th><th>C</th><th>Thickness</th></tr>
@@ -328,8 +391,17 @@ document.addEventListener("DOMContentLoaded", () => {
         <tr><td>J-202</td><td>202</td><td>222</td><td>25.4</td><td>0.6–2.3</td></tr>
         <tr><td>J-232</td><td>232</td><td>252</td><td>25.4</td><td>0.6–2.3</td></tr>
     </table>
+</section>
 
-    <div class="img-placeholder"></div>
+<hr>
+
+<section>
+    <h2 data-lang="zh">管道隔間之組合及收頭處理</h2>
+    <h2 data-lang="en">Assembly of Groove Partition and Finishing</h2>
+
+    <div style="display:flex; justify-content:center; margin-top:30px;">
+        <img src="agpf.png" style="width:100%; max-width:1000px; border-radius:12px;">
+    </div>
 </section>
 
 <footer>

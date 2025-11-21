@@ -5,14 +5,17 @@
 <title>承閎股份有限公司 — Metal Ceiling Series</title>
 
 <style>
+/* Same theme as p2 */
 html { scroll-padding-top: 140px; }
 body {
     margin: 0;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     line-height: 1.6;
     background: #ffffff;
     color: #222;
+    transition: 0.3s ease;
 }
+body.dark { background: #0f172a; color: #e2e8f0; }
 
 /* HEADER */
 header {
@@ -27,8 +30,7 @@ header {
     z-index: 1000;
 }
 header img {
-    height: 70px;
-    width: 70px;
+    height: 70px; width: 70px;
     object-fit: cover;
     border-radius: 6px;
     margin-right: 18px;
@@ -36,69 +38,36 @@ header img {
 }
 header h1 { margin: 0; font-size: 32px; }
 
-/* Back Button */
+/* SIDE BACK BUTTON */
 .back-button {
-    position: absolute;
-    left: 20px;
-    top: 100px;
-    background: #2760A8;
+    position: fixed;
+    top: 150px;
+    left: 0;
+    width: 22px;
+    height: 70px;
+    background: #568cce;
     color: white;
-    padding: 10px 18px;
-    border-radius: 6px;
-    cursor: pointer;
+    font-size: 22px;
     font-weight: bold;
     border: none;
+    border-radius: 0 10px 10px 0;
+    z-index: 2000;
 }
 
-/* Section */
+/* SECTION */
 section { padding: 40px; }
+h2 { margin-top: 0; }
 
-/* Subheaders */
-.sub-header {
-    background: #2760A8;
-    color: white;
-    padding: 8px 15px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 6px;
-    display: inline-block;
-    margin: 10px 0 20px 0;
-}
-
-/* Image Placeholder */
-.img-placeholder {
-    width: 100%;
-    height: 200px;
-    background: #ccc;
-    border-radius: 12px;
-    margin: 15px 0;
-}
-
-/* Diamond layout (for decorative meshes) */
-.diamond-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 25px;
-}
-.diamond-box {
-    width: 100%;
-    padding-bottom: 100%;
-    background: #ccc;
+/* IMAGE STYLE */
+.mcs-img {
+    width: 800px;
+    max-width: 100%;
+    margin: 40px auto;
+    display: block;
     border-radius: 12px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 25px 0;
-}
-table th, table td {
-    border: 1px solid #999;
-    padding: 10px;
-    text-align: center;
-}
-
-/* Footer */
+/* FOOTER */
 footer {
     background: #003066;
     color: white;
@@ -107,149 +76,95 @@ footer {
     margin-top: 40px;
 }
 
-/* Language Button */
-#langBtn {
-    margin-left:auto;
-    padding:8px 14px;
-    background:white;
-    color:#2760A8;
-    border:none;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-}
+/* LANGUAGE BUTTONS */
+button { cursor: pointer; }
 </style>
 
 <script>
-let currentLang="zh";
-function toggleLanguage(){
-    currentLang=(currentLang==="zh")?"en":"zh";
-    document.getElementById("langBtn").innerText=
-        currentLang==="zh"?"English":"中文";
-    document.querySelectorAll("[data-lang]").forEach(el=>{
-        el.style.display=(el.getAttribute("data-lang")===currentLang)?"block":"none";
+let currentLang = "zh";
+
+function updateModeText() {
+    const dark = document.body.classList.contains("dark");
+    document.getElementById("modeBtn").innerText =
+        currentLang === "zh" ? (dark ? "淺色模式" : "深色模式")
+                             : (dark ? "Light Mode" : "Dark Mode");
+}
+
+function toggleLanguage() {
+    currentLang = currentLang === "zh" ? "en" : "zh";
+    document.getElementById("langToggleBtn").innerText =
+        currentLang === "zh" ? "English" : "中文";
+    switchLang(currentLang);
+    updateModeText();
+}
+
+function switchLang(lang) {
+    document.querySelectorAll("[data-lang]").forEach(el => {
+        el.style.display =
+            el.getAttribute("data-lang") === lang ? "block" : "none";
     });
 }
-document.addEventListener("DOMContentLoaded",()=>{ toggleLanguage(); toggleLanguage(); });
+
+function toggleMode() {
+    document.body.classList.toggle("dark");
+    updateModeText();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    switchLang("zh");
+    updateModeText();
+});
 </script>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
     <img src="logo.jpeg" onclick="location.href='index.html'">
     <div>
         <h1 data-lang="zh">流明天花系列</h1>
         <h1 data-lang="en">Metal Ceiling Series</h1>
     </div>
-    <button id="langBtn" onclick="toggleLanguage()">English</button>
+
+    <div style="margin-left:auto; display:flex; gap:15px;">
+        <button id="langToggleBtn" onclick="toggleLanguage()">English</button>
+        <button id="modeBtn" onclick="toggleMode()">深色模式</button>
+    </div>
 </header>
 
-<button class="back-button" onclick="location.href='index.html'">← Back</button>
+<!-- SIDE BACK BUTTON -->
+<button class="back-button" onclick="location.href='index.html'">←</button>
 
-<!-- ========================================================== -->
+<!-- ====================== SECTION 1 ====================== -->
 <section>
+    <h2 data-lang="zh">方格網</h2>
+    <h2 data-lang="en">Standard Expanded Metal Mesh</h2>
 
-<!-- ====================== A SECTION ======================== -->
-<div class="sub-header" data-lang="zh">A 方格網</div>
-<div class="sub-header" data-lang="en">A Standard Expanded Metal Mesh</div>
-
-<p data-lang="zh">標準方格網，共四種顏色配置。</p>
-<p data-lang="en">Standard expanded metal mesh in four finishes.</p>
-
-<div class="img-placeholder"></div>
-<div class="img-placeholder"></div>
-<div class="img-placeholder"></div>
-<div class="img-placeholder"></div>
-
-<h3 data-lang="zh">尺寸 Size</h3>
-<h3 data-lang="en">Size</h3>
-<p data-lang="zh">600 × 600 mm 標準組裝尺寸</p>
-<p data-lang="en">Standard assembly size: 600 × 600 mm</p>
-
-<div class="img-placeholder"></div>
-
-<!-- ====================== B SECTION ======================== -->
-<div class="sub-header" data-lang="zh">B 菱形網</div>
-<div class="sub-header" data-lang="en">B Flattened Expanded Metal Mesh</div>
-
-<p data-lang="zh">菱形壓平網，共三種顏色。</p>
-<p data-lang="en">Flattened expanded mesh available in three colors.</p>
-
-<div class="img-placeholder"></div>
-<div class="img-placeholder"></div>
-<div class="img-placeholder"></div>
-
-<h3 data-lang="zh">規格表 Specification</h3>
-<h3 data-lang="en">Specifications</h3>
-
-<table>
-<tr>
-    <th data-lang="zh">項目</th>
-    <th data-lang="zh">人力網</th>
-    <th data-lang="zh">菱形網</th>
-    <th data-lang="zh">C 魚形網</th>
-
-    <th data-lang="en">Item</th>
-    <th data-lang="en">Type A</th>
-    <th data-lang="en">Type B</th>
-    <th data-lang="en">Type C</th>
-</tr>
-<tr>
-    <td data-lang="zh">規格</td>
-    <td colspan="3">600 × 600 mm</td>
-    <td data-lang="en">Specification</td>
-    <td colspan="3">600 × 600 mm</td>
-</tr>
-<tr>
-    <td data-lang="zh">目距</td>
-    <td>50×50 / 30×30</td>
-    <td>7×13</td>
-    <td>12×60</td>
-
-    <td data-lang="en">Distance (mm)</td>
-    <td>50×50 / 30×30</td>
-    <td>7×13</td>
-    <td>12×60</td>
-</tr>
-<tr>
-    <td data-lang="zh">線徑</td>
-    <td>2.6</td>
-    <td>1.2</td>
-    <td>1.4</td>
-
-    <td data-lang="en">Diameter</td>
-    <td>2.6</td>
-    <td>1.2</td>
-    <td>1.4</td>
-</tr>
-<tr>
-    <td data-lang="zh">顏色</td>
-    <td>黑</td><td>白</td><td>紅</td>
-
-    <td data-lang="en">Color</td>
-    <td>Black</td><td>White</td><td>Red</td>
-</tr>
-</table>
-
-<!-- ====================== C SECTION ======================== -->
-<div class="sub-header" data-lang="zh">C 魚形網</div>
-<div class="sub-header" data-lang="en">C Decorative Expanded Metal Mesh</div>
-
-<p data-lang="zh">魚形裝飾網，兩種顏色。</p>
-<p data-lang="en">Decorative fish-scale mesh in two finishes.</p>
-
-<div class="img-placeholder"></div>
-<div class="img-placeholder"></div>
-
-<div class="diamond-grid">
-    <div class="diamond-box"></div>
-    <div class="diamond-box"></div>
-    <div class="diamond-box"></div>
-</div>
-
+    <img src="mcs1.png" class="mcs-img">
 </section>
 
+<hr style="border:0; border-top:1px solid #ccc; width:80%; margin:60px auto;">
+
+<!-- ====================== SECTION 2 ====================== -->
+<section>
+    <h2 data-lang="zh">菱形網</h2>
+    <h2 data-lang="en">Flattened Expanded Metal Mesh</h2>
+
+    <img src="mcs2.png" class="mcs-img">
+</section>
+
+<hr style="border:0; border-top:1px solid #ccc; width:80%; margin:60px auto;">
+
+<!-- ====================== SECTION 3 ====================== -->
+<section>
+    <h2 data-lang="zh">魚形網</h2>
+    <h2 data-lang="en">Decorative Expanded Metal Mesh</h2>
+
+    <img src="mcs3.png" class="mcs-img">
+</section>
+
+<!-- FOOTER -->
 <footer>
     <p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
     <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
