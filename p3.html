@@ -18,11 +18,11 @@ body {
     overflow-x:hidden;
     transition:0.3s ease;
 }
-body.dark { background:#0f172a; color:#e2e8f0; }
 
 .fade-up { opacity:0; animation:fadeUp .9s ease forwards; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(35px);} to{opacity:1;transform:translateY(0);} }
 
+/* Floating circles */
 .circle {
     position:absolute;
     border-radius:50%;
@@ -33,7 +33,11 @@ body.dark { background:#0f172a; color:#e2e8f0; }
 .c2 { width:240px;height:240px; bottom:60px; right:12%; animation:floatAnim 8s infinite; }
 .c3 { width:140px;height:140px; bottom:22%; left:20%; animation:floatAnim 7s infinite; }
 
-@keyframes floatAnim { 0%{transform:translateY(0);} 50%{transform:translateY(-12px);} 100%{transform:translateY(0);} }
+@keyframes floatAnim { 
+    0%{transform:translateY(0);} 
+    50%{transform:translateY(-12px);} 
+    100%{transform:translateY(0);} 
+}
 
 /* ============================================================
    HEADER — GLASS STYLE
@@ -67,7 +71,7 @@ header h1 {
     color:#1F4F89;
 }
 
-/* Buttons */
+/* LANGUAGE BUTTON */
 .lang-btn {
     padding:10px 20px;
     background:linear-gradient(135deg,#2760A8,#1F4F89);
@@ -218,9 +222,8 @@ footer {
         <h1 data-lang="en">T-BAR Ceiling System</h1>
     </div>
 
-    <div style="margin-left:auto; display:flex; gap:15px;">
+    <div style="margin-left:auto;">
         <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
-        <button class="lang-btn" id="darkBtn" onclick="toggleDark()">深色模式</button>
     </div>
 </header>
 
@@ -228,13 +231,10 @@ footer {
 <div id="navBar">
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html'">首頁</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html'">Home</div>
-
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html#features'">產品介紹</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html#features'">Products</div>
-
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html#about'">關於我們</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html#about'">About Us</div>
-
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html#contact'">聯絡我們</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html#contact'">Contact</div>
 </div>
@@ -261,15 +261,14 @@ footer {
 
     <p data-lang="zh">
         ■ 輕鋼石膏天花，主副骨架清晰可見。<br>
-        ■ 單吊桿 30.35mm 之多樣化設計，符合 CNS1244 標準。<br>
+        ■ 吊桿設計符合 CNS1244 標準。<br>
         ■ 平整度佳，抗拉強度達 210MPA。<br>
         ■ 烤漆厚度 20–50 μm。
     </p>
 
     <p data-lang="en">
         A modular ceiling suspension system known as T-Bar or Tee-grid.
-        Fast installation, high fire-resistance, and supports a wide range of panels including
-        mineral fiber, gypsum, PVC gypsum, and metal ceilings.
+        Fast installation, high fire-resistance, and supports a wide range of panels.
     </p>
 </section>
 
@@ -281,7 +280,6 @@ footer {
     <p data-lang="en">Ideal for offices, hospitals, churches, and various large public areas.</p>
 </section>
 
-<!-- TB IMAGES (STACKED 3, THEN GRID 6) -->
 <img src="tb1.png" class="tb-single">
 <img src="tb2.png" class="tb-single">
 <img src="tb3.png" class="tb-single">
@@ -303,15 +301,13 @@ footer {
     <img src="tb9.png" class="tb-pair">
 </div>
 
-</div> <!-- end container -->
+</div>
 
-<!-- FOOTER -->
 <footer>
     <p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
     <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
 </footer>
 
-<!-- JAVASCRIPT -->
 <script>
 /* LANGUAGE */
 let currentLang="zh";
@@ -325,28 +321,13 @@ function toggleLanguage(){
     document.getElementById("langBtn").innerText =
         currentLang==="zh" ? "English" : "中文";
     applyLanguage(currentLang);
-    updateDarkButton();
-}
-
-/* DARK MODE */
-function toggleDark(){
-    document.body.classList.toggle("dark");
-    updateDarkButton();
-}
-function updateDarkButton(){
-    const dark = document.body.classList.contains("dark");
-    document.getElementById("darkBtn").innerText =
-        dark
-        ? (currentLang==="zh" ? "淺色模式" : "Light Mode")
-        : (currentLang==="zh" ? "深色模式" : "Dark Mode");
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
     applyLanguage("zh");
-    updateDarkButton();
 });
 
-/* POPDOWN NAV */
+/* POPDOWN MENU */
 window.addEventListener("DOMContentLoaded", () => {
     const header=document.querySelector("header");
     const navBar=document.getElementById("navBar");

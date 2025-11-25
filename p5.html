@@ -18,7 +18,6 @@ body {
     overflow-x:hidden;
     transition:0.3s ease;
 }
-body.dark { background:#0f172a; color:#e2e8f0; }
 
 /* Fade-up animation */
 .fade-up { opacity:0; animation:fadeUp .9s ease forwards; }
@@ -72,7 +71,7 @@ header h1 {
     color:#1F4F89;
 }
 
-/* Buttons */
+/* Language Button */
 .lang-btn {
     padding:10px 20px;
     background:linear-gradient(135deg,#2760A8,#1F4F89);
@@ -209,9 +208,9 @@ footer {
         <h1 data-lang="en">Metal Ceiling Series</h1>
     </div>
 
-    <div style="margin-left:auto; display:flex; gap:15px;">
+    <!-- LANGUAGE TOGGLE ONLY (dark mode removed) -->
+    <div style="margin-left:auto;">
         <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
-        <button class="lang-btn" id="darkBtn" onclick="toggleDark()">深色模式</button>
     </div>
 </header>
 
@@ -219,13 +218,10 @@ footer {
 <div id="navBar">
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html'">首頁</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html'">Home</div>
-
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html#features'">產品介紹</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html#features'">Products</div>
-
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html#about'">關於我們</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html#about'">About Us</div>
-
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html#contact'">聯絡我們</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html#contact'">Contact</div>
 </div>
@@ -250,7 +246,6 @@ footer {
 <section>
     <h2 data-lang="zh">方格網</h2>
     <h2 data-lang="en">Standard Expanded Metal Mesh</h2>
-
     <img src="mcs1.png" class="mcs-img">
 </section>
 
@@ -260,7 +255,6 @@ footer {
 <section>
     <h2 data-lang="zh">菱形網</h2>
     <h2 data-lang="en">Flattened Expanded Metal Mesh</h2>
-
     <img src="mcs2.png" class="mcs-img">
 </section>
 
@@ -270,11 +264,10 @@ footer {
 <section>
     <h2 data-lang="zh">魚形網</h2>
     <h2 data-lang="en">Decorative Expanded Metal Mesh</h2>
-
     <img src="mcs3.png" class="mcs-img">
 </section>
 
-</div> <!-- END container -->
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -282,7 +275,7 @@ footer {
     <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
 </footer>
 
-<!-- JAVASCRIPT -->
+<!-- JS -->
 <script>
 /* LANGUAGE */
 let currentLang="zh";
@@ -297,25 +290,11 @@ function toggleLanguage(){
     document.getElementById("langBtn").innerText =
         currentLang==="zh" ? "English" : "中文";
     applyLanguage(currentLang);
-    updateDarkButton();
-}
-
-/* DARK MODE */
-function toggleDark(){
-    document.body.classList.toggle("dark");
-    updateDarkButton();
-}
-function updateDarkButton(){
-    const dark=document.body.classList.contains("dark");
-    document.getElementById("darkBtn").innerText =
-        dark ? (currentLang==="zh" ? "淺色模式" : "Light Mode")
-             : (currentLang==="zh" ? "深色模式" : "Dark Mode");
 }
 
 /* INIT */
 document.addEventListener("DOMContentLoaded",()=>{
     applyLanguage("zh");
-    updateDarkButton();
 });
 
 /* POPDOWN NAV */

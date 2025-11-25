@@ -18,7 +18,6 @@ body {
     overflow-x:hidden;
     transition:0.3s ease;
 }
-body.dark { background:#0f172a; color:#e2e8f0; }
 
 .fade-up { opacity:0; animation:fadeUp .9s ease forwards; }
 @keyframes fadeUp { from{opacity:0; transform:translateY(35px);} to{opacity:1; transform:translateY(0);} }
@@ -72,7 +71,7 @@ header h1 {
     color:#1F4F89;
 }
 
-/* Buttons */
+/* LANGUAGE BUTTON */
 .lang-btn {
     padding:10px 20px;
     background:linear-gradient(135deg,#2760A8,#1F4F89);
@@ -93,7 +92,8 @@ header h1 {
     background:linear-gradient(to right,#2760A8,#1F4F89);
     width:100%;
     position:fixed;
-    top:110px; left:0;
+    top:110px; 
+    left:0;
     display:flex;
     justify-content:center;
     gap:60px;
@@ -104,7 +104,11 @@ header h1 {
     z-index:900;
     box-shadow:0 8px 18px rgba(0,0,0,0.25);
 }
-#navBar.visible { opacity:1; height:60px; padding:14px 0; }
+#navBar.visible { 
+    opacity:1; 
+    height:60px; 
+    padding:14px 0; 
+}
 .nav-item {
     color:white;
     cursor:pointer;
@@ -208,9 +212,9 @@ footer {
         <h1 data-lang="en">Concealed Grid Ceiling Series</h1>
     </div>
 
-    <div style="margin-left:auto; display:flex; gap:15px;">
+    <!-- ONLY LANGUAGE BUTTON -->
+    <div style="margin-left:auto;">
         <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
-        <button class="lang-btn" id="darkBtn" onclick="toggleDark()">深色模式</button>
     </div>
 </header>
 
@@ -218,13 +222,10 @@ footer {
 <div id="navBar">
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html'">首頁</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html'">Home</div>
-
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html#features'">產品介紹</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html#features'">Products</div>
-
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html#about'">關於我們</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html#about'">About Us</div>
-
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html#contact'">聯絡我們</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html#contact'">Contact</div>
 </div>
@@ -250,47 +251,42 @@ footer {
     <h2 data-lang="en">Features</h2>
 
     <p data-lang="zh">
-        ● 暗支撐架附卡榫，與主架快速卡合，省去傳統配件。<br>
-        ● 施工可同步封板與安裝骨架，工期縮短一倍以上。<br>
+        ● 暗支撐架附卡榫，可快速卡合主架。<br>
+        ● 安裝骨架與封板可同步進行，提高效率一倍。<br>
         ● 每呎六對卡榫，定位快速精準。<br>
         ● 符合 ASTM C635-00 均佈載重試驗。<br>
     </p>
 
     <p data-lang="en">
-        ● Locking tabs allow quick attachment without traditional accessories.<br>
-        ● Frame installation and board fixing can proceed simultaneously—cutting project time in half.<br>
-        ● Six precision locking-tab pairs per foot ensure quick and accurate positioning.<br>
-        ● Complies with ASTM C635-00 loading test requirements.<br>
+        ● Concealed furring bar locks quickly onto main channel.<br>
+        ● Frame installation & board fixing can run simultaneously (2× faster).<br>
+        ● Six precision locking tabs per foot ensure fast, accurate alignment.<br>
+        ● Meets ASTM C635-00 uniform load requirements.<br>
     </p>
 
     <h3 data-lang="zh"><b>施工效率提升一倍以上</b></h3>
     <h3 data-lang="en"><b>Double Installation Efficiency</b></h3>
 
-    <p data-lang="zh">
-        精密加工配合英制3'x6'、4'x8'與公制1.2m×2.4m板材，提高整平品質。
-    </p>
-
-    <p data-lang="en">
-        Precision-pitched structure fits 3’×6’, 4’×8’, and 1.2m×2.4m boards for superior flatness and finishing.
-    </p>
+    <p data-lang="zh">適用3’×6’，4’×8’，1.2×2.4m板材，整平品質佳。</p>
+    <p data-lang="en">Suitable for 3’×6’, 4’×8’, and 1.2×2.4m boards with excellent flatness.</p>
 
     <h3 data-lang="zh"><b>產品精密，提高施工品質</b></h3>
     <h3 data-lang="en"><b>High Precision for Better Quality</b></h3>
 
-    <p data-lang="zh">加工精準，組裝密合度高，穩定性佳。</p>
-    <p data-lang="en">High accuracy and tight assembly improve stability and long-term performance.</p>
+    <p data-lang="zh">加工精準、組裝密合度高。</p>
+    <p data-lang="en">Precisely manufactured with tight assembly and stability.</p>
 
     <h3 data-lang="zh"><b>選擇多樣式</b></h3>
     <h3 data-lang="en"><b>Multiple Configuration Options</b></h3>
 
-    <p data-lang="zh">提供多種載重與厚度，適用不同天花需求。</p>
-    <p data-lang="en">Supports different load conditions and material combinations.</p>
+    <p data-lang="zh">提供多種載重/厚度對應不同天花需求。</p>
+    <p data-lang="en">Supports various loads & installation methods.</p>
 
     <h2 data-lang="zh">適用範圍 Applications</h2>
     <h2 data-lang="en">Applications</h2>
 
-    <p data-lang="zh">辦公室、醫院、百貨、會議室、餐廳、娛樂場所、住宅等。</p>
-    <p data-lang="en">Offices, hospitals, retail, meeting rooms, restaurants, entertainment spaces, homes.</p>
+    <p data-lang="zh">辦公室、醫院、百貨、餐廳、住宅等。</p>
+    <p data-lang="en">Offices, hospitals, retail, restaurants, residences.</p>
 
     <img src="cgcs1.png" class="img-wide">
     <img src="cgcs2.png" class="img-wide">
@@ -301,7 +297,7 @@ footer {
     <img src="cgcs3.png" class="img-wide">
 
     <h3 data-lang="zh">暗架組合方式與容許載重</h3>
-    <h3 data-lang="en">Assembly Methods & Loading Capacity</h3>
+    <h3 data-lang="en">Assembly & Loading Capacity</h3>
 
     <img src="cgcs4.png" class="img-wide">
 
@@ -313,31 +309,27 @@ footer {
 
 <hr class="divider">
 
-<!-- ===================== SECOND PRODUCT SERIES ===================== -->
-
 <section>
     <h2 data-lang="zh">卡U鋼板／防颱型企口板</h2>
     <h2 data-lang="en">U-Type & Anti-Typhoon Strip Ceiling</h2>
 
     <p data-lang="zh">
         ● 防火、防潮、防鏽蝕、不退色。<br>
-        ● 表面塗裝均勻、質感佳、多色可選。<br>
+        ● 表面塗裝均勻、多色可選。<br>
         ● 安裝快速、維護容易。<br>
-        ● 室內／半戶外皆適用。<br>
     </p>
 
     <p data-lang="en">
-        ● Fire-resistant, moisture-proof, corrosion-resistant, fade-proof.<br>
-        ● Elegant coating finish with multiple color options.<br>
-        ● Fast installation and easy maintenance.<br>
-        ● Suitable for indoor and semi-outdoor use.<br>
+        ● Fire-resistant, moisture-proof, corrosion-proof, fade-proof.<br>
+        ● Uniform premium coating with multiple color options.<br>
+        ● Quick installation and easy maintenance.<br>
     </p>
 
     <h3 data-lang="zh">適用範圍</h3>
     <h3 data-lang="en">Applications</h3>
 
-    <p data-lang="zh">禮堂、體育館、學校、商場、車站、廠房、走道、陽台等。</p>
-    <p data-lang="en">Auditoriums, gyms, schools, malls, stations, factories, corridors, balconies.</p>
+    <p data-lang="zh">禮堂、商場、車站、廠房、陽台等。</p>
+    <p data-lang="en">Auditoriums, malls, stations, factories, balconies.</p>
 
     <h3 data-lang="zh">卡U鋼板</h3>
     <h3 data-lang="en">U-Type Strip Ceiling</h3>
@@ -348,10 +340,9 @@ footer {
     <h3 data-lang="en">Anti-Typhoon Type Strip Ceiling</h3>
 
     <img src="cgcs7.png" class="img-wide">
-
 </section>
 
-</div> <!-- END container -->
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -369,29 +360,14 @@ function applyLanguage(lang){
     });
 }
 function toggleLanguage(){
-    currentLang = currentLang==="zh" ? "en" : "zh";
-    document.getElementById("langBtn").innerText =
-        currentLang==="zh" ? "English" : "中文";
+    currentLang = (currentLang==="zh" ? "en" : "zh");
+    document.getElementById("langBtn").innerText = 
+        (currentLang==="zh" ? "English" : "中文");
     applyLanguage(currentLang);
-    updateDarkButton();
-}
-
-/* DARK MODE */
-function toggleDark(){
-    document.body.classList.toggle("dark");
-    updateDarkButton();
-}
-function updateDarkButton(){
-    const dark=document.body.classList.contains("dark");
-    document.getElementById("darkBtn").innerText =
-        dark
-        ? (currentLang==="zh" ? "淺色模式" : "Light Mode")
-        : (currentLang==="zh" ? "深色模式" : "Dark Mode");
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
     applyLanguage("zh");
-    updateDarkButton();
 });
 
 /* POPDOWN NAV */

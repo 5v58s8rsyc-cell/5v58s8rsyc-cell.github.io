@@ -18,7 +18,6 @@ body {
     overflow-x:hidden;
     transition:0.3s ease;
 }
-body.dark { background:#0f172a; color:#e2e8f0; }
 
 /* Fade-up animation */
 .fade-up {
@@ -30,7 +29,7 @@ body.dark { background:#0f172a; color:#e2e8f0; }
     to { opacity:1; transform:translateY(0); }
 }
 
-/* Floating circles (hero background) */
+/* Floating circles */
 .circle {
     position:absolute;
     border-radius:50%;
@@ -48,7 +47,7 @@ body.dark { background:#0f172a; color:#e2e8f0; }
 }
 
 /* ============================================================
-   HEADER — SAME STYLE AS INDEX / P1
+   HEADER — GLASS STYLE
 ============================================================ */
 header {
     background:rgba(255,255,255,0.75);
@@ -79,7 +78,7 @@ header h1 {
     color:#1F4F89;
 }
 
-/* Lang / Dark mode buttons */
+/* LANGUAGE BUTTON — OPTION A */
 .lang-btn {
     padding:10px 20px;
     background:linear-gradient(135deg,#2760A8,#1F4F89);
@@ -88,13 +87,10 @@ header h1 {
     border-radius:10px;
     font-weight:bold;
     cursor:pointer;
-    transition:0.2s;
     box-shadow:0 6px 20px rgba(39,96,168,0.35);
+    transition:.2s;
 }
-.lang-btn:hover {
-    transform:translateY(-3px);
-    box-shadow:0 10px 28px rgba(39,96,168,0.45);
-}
+.lang-btn:hover { transform:translateY(-3px); }
 
 /* ============================================================
    POPDOWN NAV
@@ -121,7 +117,7 @@ header h1 {
 .nav-item:hover { transform:scale(1.18); }
 
 /* ============================================================
-   FIXED SIDE BACK BUTTON
+   SIDE BACK BUTTON
 ============================================================ */
 .side-back {
     position:fixed;
@@ -166,7 +162,7 @@ header h1 {
 }
 
 /* ============================================================
-   PAGE CONTENT CONTAINER
+   CONTENT
 ============================================================ */
 .container {
     max-width:1200px;
@@ -174,11 +170,9 @@ header h1 {
     padding:60px 60px;
 }
 
-/* CONTENT SECTIONS */
 section { margin-bottom:40px; }
 h2 { margin-top:0; color:#1F4F89; }
 
-/* FULL-WIDTH IMAGES */
 .full-img {
     width:100%;
     max-width:1000px;
@@ -188,14 +182,12 @@ h2 { margin-top:0; color:#1F4F89; }
     box-shadow:0 4px 16px rgba(0,0,0,0.08);
 }
 
-/* THIN DIVIDER */
 .divider {
     border:none;
     border-top:1px solid #dddddd;
     margin:40px 0;
 }
 
-/* FOOTER */
 footer {
     background:#003066;
     color:white;
@@ -220,13 +212,13 @@ footer {
         <h1 data-lang="en">Partition Frame System – Accessories & Construction</h1>
     </div>
 
-    <div style="margin-left:auto; display:flex; gap:15px;">
+    <!-- ONLY LANGUAGE BUTTON HERE -->
+    <div style="margin-left:auto;">
         <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
-        <button class="lang-btn" id="darkBtn" onclick="toggleDark()">深色模式</button>
     </div>
 </header>
 
-<!-- POPDOWN NAV (LINK BACK TO MAIN PAGE) -->
+<!-- POPDOWN NAV -->
 <div id="navBar">
     <div class="nav-item" data-lang="zh" onclick="location.href='index.html'">首頁</div>
     <div class="nav-item" data-lang="en" onclick="location.href='index.html'">Home</div>
@@ -255,11 +247,11 @@ footer {
     </p>
     <p data-lang="en">
         Designed for concrete and wall construction, enhancing structural support, preventing collapse,
-        and improving overall efficiency and safety on site.
+        and improving efficiency & safety.
     </p>
 </div>
 
-<!-- PAGE CONTENT -->
+<!-- CONTENT -->
 <div class="container fade-up">
 
     <!-- APPLICATION -->
@@ -267,13 +259,8 @@ footer {
         <h2 data-lang="zh">應用 Application</h2>
         <h2 data-lang="en">Application</h2>
 
-        <p data-lang="zh">
-            適用於混凝土施工，因其灌漿程序可節省施工時間與材料。
-        </p>
-
-        <p data-lang="en">
-            Suitable for concrete. Due to the grouting procedure, it saves construction time and materials.
-        </p>
+        <p data-lang="zh">適用於混凝土施工，可節省灌漿時間與材料。</p>
+        <p data-lang="en">Suitable for concrete; saves grouting time and materials.</p>
     </section>
 
     <hr class="divider">
@@ -284,43 +271,43 @@ footer {
         <h2 data-lang="en">Features</h2>
 
         <p data-lang="zh">
-            ● 用於混凝土與壁板施工，具抗壓、抗彎曲、抗剪強度。<br>
-            ● 能支撐牆體，防止坍塌。<br>
-            ● 節省補強與校直作業成本，降低施工風險。<br>
-            ● 符合 ROC 建築技術規則 / ACI 347 / JIS / AISC / CNS 標準。
+            ● 抗壓、抗彎曲、抗剪強度。<br>
+            ● 支撐牆體、防止坍塌。<br>
+            ● 降低補強成本與風險。<br>
+            ● 符合 ROC / ACI 347 / JIS / AISC / CNS 標準。
         </p>
 
         <p data-lang="en">
-            ● Used for concrete and wallboard construction; resists compression, bending, and shear.<br>
-            ● Supports wall structure and prevents collapse.<br>
-            ● Saves reinforcement and alignment work costs, reducing construction risk.<br>
-            ● Complies with ROC Technical Regulations / ACI Committee 347 / JIS / AISC / CNS standards.
+            ● Compression, bending & shear resistance.<br>
+            ● Supports the wall and prevents collapse.<br>
+            ● Reduces reinforcing cost and risk.<br>
+            ● Meets ROC / ACI347 / JIS / AISC / CNS standards.
         </p>
     </section>
 
     <hr class="divider">
 
-    <!-- CONSTRUCTION ILLUSTRATIONS -->
+    <!-- IMAGES -->
     <section>
         <h2 data-lang="zh">施工示意圖</h2>
         <h2 data-lang="en">Construction Illustrations</h2>
 
-        <img src="pfs1.png" class="full-img" alt="Accessories & Construction 1">
+        <img src="pfs1.png" class="full-img">
         <hr class="divider">
 
-        <img src="pfs2.png" class="full-img" alt="Accessories & Construction 2">
+        <img src="pfs2.png" class="full-img">
         <hr class="divider">
 
-        <img src="pfs3.png" class="full-img" alt="Accessories & Construction 3">
+        <img src="pfs3.png" class="full-img">
         <hr class="divider">
 
-        <img src="pfs4.png" class="full-img" alt="Accessories & Construction 4">
+        <img src="pfs4.png" class="full-img">
         <hr class="divider">
 
-        <img src="pfs5.png" class="full-img" alt="Accessories & Construction 5">
+        <img src="pfs5.png" class="full-img">
     </section>
 
-</div> <!-- END .container -->
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -329,57 +316,37 @@ footer {
 </footer>
 
 <script>
-/* LANGUAGE SYSTEM */
-let currentLang = "zh";
-
+/* LANGUAGE */
+let currentLang="zh";
 function applyLanguage(lang){
     document.querySelectorAll("[data-lang]").forEach(el=>{
         el.style.display = (el.getAttribute("data-lang")===lang) ? "" : "none";
     });
 }
-
 function toggleLanguage(){
-    currentLang = (currentLang==="zh") ? "en" : "zh";
+    currentLang = currentLang==="zh" ? "en" : "zh";
     document.getElementById("langBtn").innerText =
-        (currentLang==="zh") ? "English" : "中文";
+        currentLang==="zh" ? "English" : "中文";
     applyLanguage(currentLang);
-    updateDarkButtonText();
 }
-
-/* DARK MODE */
-function toggleDark(){
-    document.body.classList.toggle("dark");
-    updateDarkButtonText();
-}
-
-function updateDarkButtonText(){
-    const dark = document.body.classList.contains("dark");
-    document.getElementById("darkBtn").innerText =
-        dark
-        ? (currentLang==="zh" ? "淺色模式" : "Light Mode")
-        : (currentLang==="zh" ? "深色模式" : "Dark Mode");
-}
-
-/* INIT LANGUAGE + DARK BUTTON */
 document.addEventListener("DOMContentLoaded",()=>{
     applyLanguage("zh");
-    updateDarkButtonText();
 });
 
-/* POPDOWN NAV BEHAVIOR */
-window.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelector("header");
-    const navBar = document.getElementById("navBar");
-    let isHovering = false;
+/* POPDOWN MENU */
+window.addEventListener("DOMContentLoaded",()=>{
+    const header=document.querySelector("header");
+    const navBar=document.getElementById("navBar");
+    let isHover=false;
 
-    function showMenu(){ navBar.classList.add("visible"); }
-    function hideMenu(){ setTimeout(()=>{ if(!isHovering) navBar.classList.remove("visible"); },150); }
+    function show(){ navBar.classList.add("visible"); }
+    function hide(){ setTimeout(()=>{ if(!isHover) navBar.classList.remove("visible"); },150); }
 
-    header.addEventListener("mouseenter",()=>{ isHovering=true; showMenu(); });
-    header.addEventListener("mouseleave",()=>{ isHovering=false; hideMenu(); });
+    header.addEventListener("mouseenter",()=>{ isHover=true; show(); });
+    header.addEventListener("mouseleave",()=>{ isHover=false; hide(); });
 
-    navBar.addEventListener("mouseenter",()=>{ isHovering=true; showMenu(); });
-    navBar.addEventListener("mouseleave",()=>{ isHovering=false; hideMenu(); });
+    navBar.addEventListener("mouseenter",()=>{ isHover=true; show(); });
+    navBar.addEventListener("mouseleave",()=>{ isHover=false; hide(); });
 });
 </script>
 

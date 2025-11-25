@@ -6,9 +6,9 @@
 
 <style>
 /* ============================================================
-   GLOBAL — MATCH INDEX THEME
+   GLOBAL — MATCH FULL SITE THEME
 ============================================================ */
-html { scroll-padding-top: 140px; }
+html { scroll-padding-top:140px; }
 body {
     margin:0;
     font-family:'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -18,17 +18,9 @@ body {
     overflow-x:hidden;
     transition:0.3s ease;
 }
-body.dark { background:#0f172a; color:#e2e8f0; }
 
-/* Fade-up animation */
-.fade-up {
-    opacity:0;
-    animation: fadeUp 0.9s ease forwards;
-}
-@keyframes fadeUp {
-    from { opacity:0; transform:translateY(35px); }
-    to { opacity:1; transform:translateY(0); }
-}
+.fade-up { opacity:0; animation:fadeUp .9s ease forwards; }
+@keyframes fadeUp { from{opacity:0; transform:translateY(35px);} to{opacity:1; transform:translateY(0);} }
 
 /* Floating circles */
 .circle {
@@ -40,15 +32,10 @@ body.dark { background:#0f172a; color:#e2e8f0; }
 .c1 { width:180px;height:180px; top:80px; left:12%; animation:floatAnim 6s infinite; }
 .c2 { width:240px;height:240px; bottom:60px; right:12%; animation:floatAnim 8s infinite; }
 .c3 { width:140px;height:140px; bottom:22%; left:20%; animation:floatAnim 7s infinite; }
-
-@keyframes floatAnim {
-    0% { transform:translateY(0px); }
-    50% { transform:translateY(-12px); }
-    100% { transform:translateY(0px); }
-}
+@keyframes floatAnim { 0%{transform:translateY(0);} 50%{transform:translateY(-12px);} 100%{transform:translateY(0);} }
 
 /* ============================================================
-   HEADER — SAME AS HOME INDEX
+   HEADER — GLASS STYLE
 ============================================================ */
 header {
     background:rgba(255,255,255,0.75);
@@ -69,32 +56,29 @@ header img {
     object-fit:cover;
     margin-right:20px;
     cursor:pointer;
-    box-shadow:0 5px 20px rgba(39,96,168,0.35);
     background:white;
+    box-shadow:0 5px 20px rgba(39,96,168,0.35);
 }
 header h1 {
     margin:0;
     font-size:30px;
-    font-weight:750;
+    font-weight:800;
     color:#1F4F89;
 }
 
-/* Lang / Dark mode button */
+/* Language Button (Gradient Style) */
 .lang-btn {
     padding:10px 20px;
     background:linear-gradient(135deg,#2760A8,#1F4F89);
     color:white;
     border:none;
     border-radius:10px;
-    font-weight:bold;
     cursor:pointer;
+    font-weight:bold;
+    box-shadow:0 5px 16px rgba(39,96,168,0.35);
     transition:0.2s;
-    box-shadow:0 6px 20px rgba(39,96,168,0.35);
 }
-.lang-btn:hover {
-    transform:translateY(-3px);
-    box-shadow:0 10px 28px rgba(39,96,168,0.45);
-}
+.lang-btn:hover { transform:translateY(-3px); }
 
 /* ============================================================
    POPDOWN NAV
@@ -108,27 +92,27 @@ header h1 {
     justify-content:center;
     gap:60px;
     opacity:0; height:0; overflow:hidden;
-    transition:height .25s, opacity .25s;
+    transition:0.25s;
     z-index:900;
     box-shadow:0 8px 18px rgba(0,0,0,0.25);
 }
 #navBar.visible { opacity:1; height:60px; padding:14px 0; }
 .nav-item {
-    color:white; cursor:pointer;
-    font-size:19px; font-weight:650;
-    transition:0.2s;
+    color:white;
+    font-size:19px;
+    font-weight:650;
+    cursor:pointer;
+    transition:.2s;
 }
 .nav-item:hover { transform:scale(1.18); }
 
 /* ============================================================
-   FIXED BACK BUTTON (MODERN)
+   FIXED SIDE BACK BUTTON
 ============================================================ */
 .side-back {
     position:fixed;
-    top:120px;
-    left:0;
-    width:36px;
-    height:70px;
+    top:120px; left:0;
+    width:36px; height:70px;
     background:linear-gradient(135deg,#2760A8,#1F4F89);
     color:white;
     font-size:24px;
@@ -138,13 +122,13 @@ header h1 {
     align-items:center;
     border-radius:0 14px 14px 0;
     cursor:pointer;
+    transition:.25s ease;
     z-index:2000;
-    transition:0.25s;
 }
 .side-back:hover { transform:translateX(5px); }
 
 /* ============================================================
-   HERO SECTION (NEW)
+   HERO
 ============================================================ */
 #hero {
     text-align:center;
@@ -155,28 +139,25 @@ header h1 {
 }
 #hero h1 {
     font-size:46px;
-    font-weight:800;
+    font-weight:900;
     color:#1F4F89;
 }
 #hero p {
     font-size:20px;
-    opacity:0.75;
+    opacity:.75;
     max-width:700px;
     margin:auto;
 }
 
 /* ============================================================
-   PAGE CONTENT CONTAINER
+   CONTENT
 ============================================================ */
 .container {
     max-width:1200px;
     margin:auto;
-    padding:60px 60px;
+    padding:60px;
 }
 
-/* ============================================================
-   IMAGE STYLES
-============================================================ */
 .img-pair {
     display:flex;
     justify-content:center;
@@ -185,28 +166,17 @@ header h1 {
 }
 .img-pair img {
     width:100%;
-    max-width:470px;
-    border-radius:14px;
-    box-shadow:0 5px 18px rgba(0,0,0,0.08);
-}
-.product-img {
-    width:100%;
-    max-width:900px;
-    display:block;
-    margin:20px auto;
-    border-radius:14px;
-    box-shadow:0 4px 16px rgba(0,0,0,0.08);
+    max-width:500px;
+    border-radius:12px;
 }
 
-/* TABLE */
+/* Table */
 table {
-    width:100%;
+    width:70%;
+    margin:25px auto;
     border-collapse:collapse;
-    margin:30px 0;
     background:white;
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:0 5px 16px rgba(0,0,0,0.08);
+    box-shadow:0 4px 16px rgba(0,0,0,0.08);
 }
 table th {
     background:#2760A8;
@@ -215,10 +185,26 @@ table th {
 }
 table td {
     padding:12px;
+    border:1px solid #ddd;
     text-align:center;
-    border-bottom:1px solid #efefef;
 }
-body.dark table td { border-color:#334155; }
+
+/* Full-width image */
+.full-img {
+    width:100%;
+    max-width:1000px;
+    display:block;
+    margin:auto;
+    border-radius:12px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.1);
+}
+
+.divider {
+    border:none;
+    border-top:1px solid #ddd;
+    width:85%;
+    margin:60px auto;
+}
 
 /* FOOTER */
 footer {
@@ -233,7 +219,7 @@ footer {
 
 <body>
 
-<!-- FIXED BACK BUTTON -->
+<!-- SIDE BACK BUTTON -->
 <div class="side-back" onclick="location.href='index.html'">←</div>
 
 <!-- HEADER -->
@@ -245,9 +231,8 @@ footer {
         <h1 data-lang="en">Partition Frame System</h1>
     </div>
 
-    <div style="margin-left:auto; display:flex; gap:15px;">
+    <div style="margin-left:auto;">
         <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
-        <button class="lang-btn" id="darkBtn" onclick="toggleDark()">深色模式</button>
     </div>
 </header>
 
@@ -273,13 +258,13 @@ footer {
     <div class="circle c3"></div>
 
     <h1 data-lang="zh">隔間輕鋼架系統</h1>
-    <h1 data-lang="en">Partition Frame System</h1>
+    <h1 data-lang="en">Partition Steel Frame System</h1>
 
-    <p data-lang="zh">各式乾式隔間牆面專用，耐用、堅固、施工快速。</p>
-    <p data-lang="en">Premium steel framing system designed for fast and durable partition construction.</p>
+    <p data-lang="zh">適用於各類隔間牆面，高強度、耐用、安全施工。</p>
+    <p data-lang="en">High-strength partition steel systems designed for fast and safe wall installation.</p>
 </div>
 
-<!-- PAGE CONTENT -->
+<!-- CONTENT -->
 <div class="container fade-up">
 
 <!-- APPLICATION -->
@@ -288,32 +273,27 @@ footer {
     <h2 data-lang="en">Applications</h2>
 
     <p data-lang="zh">
-        適用於辦公大樓、百貨公司、醫院、餐廳、工業廠房、娛樂場所、住宅等各類隔間牆。<br>
-        標準乾式隔間工法使用 U 型下槽與立柱構築牆體。
+        適用於辦公室、住宅、商場、醫院、工廠等各類隔間牆面。
     </p>
-
     <p data-lang="en">
-        Suitable for interior walls of office buildings, department stores, hospitals, restaurants,
-        factories, entertainment venues, and residences. Walls are formed using U-tracks and studs.
+        Applicable for interior walls of offices, homes, malls, hospitals, factories, and more.
     </p>
 </section>
 
-<hr>
-
-<!-- SPEC -->
+<!-- SPECIFICATION -->
 <section>
     <h2 data-lang="zh">規格 Specification</h2>
     <h2 data-lang="en">Specification</h2>
 
-    <p data-lang="zh">雙側立腳防滑設計，提升施工安全與穩定度。</p>
-    <p data-lang="en">Dual-side anti-slip flanges improve installation safety and frame stability.</p>
+    <p data-lang="zh">立腳防滑設計，可根據板材特性搭配不同規格。</p>
+    <p data-lang="en">Anti-slip flange design with multiple configurations based on board requirements.</p>
 </section>
 
-<hr>
+<hr class="divider">
 
 <!-- C STUD -->
 <section>
-    <h2 data-lang="zh">C 型立柱 C Stud</h2>
+    <h2 data-lang="zh">C 型立柱 C-Stud</h2>
     <h2 data-lang="en">C Stud</h2>
 
     <div class="img-pair">
@@ -322,30 +302,21 @@ footer {
     </div>
 
     <table>
-        <tr><th>Model</th><th>A (mm)</th><th>B (mm)</th><th>Thickness (mm)</th></tr>
-        <tr><td>C-40</td><td>40</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-50</td><td>50</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-60</td><td>60</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-65</td><td>65</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-70</td><td>70</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-75</td><td>75</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-80</td><td>80</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-88</td><td>88</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-92</td><td>92</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-100</td><td>100</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-120</td><td>120</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-125</td><td>125</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-132</td><td>132</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-150</td><td>150</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>C-200</td><td>200</td><td>25–45 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
+        <tr><td>C-40</td><td>40</td><td>25–100</td><td>0.5–5.0</td></tr>
+        <tr><td>C-50</td><td>50</td><td>25–100</td><td>0.5–5.0</td></tr>
+        <tr><td>C-60</td><td>60</td><td>25–100</td><td>0.5–5.0</td></tr>
+        <tr><td>C-75</td><td>75</td><td>25–100</td><td>0.5–5.0</td></tr>
+        <tr><td>C-100</td><td>100</td><td>25–100</td><td>0.5–5.0</td></tr>
+        <tr><td>C-150</td><td>150</td><td>25–100</td><td>0.5–5.0</td></tr>
     </table>
 </section>
 
-<hr>
+<hr class="divider">
 
 <!-- U TRACK -->
 <section>
-    <h2 data-lang="zh">U 型上下槽 U Track</h2>
+    <h2 data-lang="zh">U 型上下槽 U-Track</h2>
     <h2 data-lang="en">U Track</h2>
 
     <div class="img-pair">
@@ -354,29 +325,20 @@ footer {
     </div>
 
     <table>
-        <tr><th>Model</th><th>A (mm)</th><th>B (mm)</th><th>Thickness (mm)</th></tr>
-        <tr><td>U-42</td><td>42</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-52</td><td>52</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-62</td><td>62</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-67</td><td>67</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-72</td><td>72</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-77</td><td>77</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-82</td><td>82</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-90</td><td>90</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-94</td><td>94</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-102</td><td>102</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-122</td><td>122</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-127</td><td>127</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-152</td><td>152</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
-        <tr><td>U-202</td><td>202</td><td>30–110 / 50–100</td><td>0.5–2.3 / 2.0–5.0</td></tr>
+        <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
+        <tr><td>U-42</td><td>42</td><td>30–110</td><td>0.5–5.0</td></tr>
+        <tr><td>U-52</td><td>52</td><td>30–110</td><td>0.5–5.0</td></tr>
+        <tr><td>U-72</td><td>72</td><td>30–110</td><td>0.5–5.0</td></tr>
+        <tr><td>U-90</td><td>90</td><td>30–110</td><td>0.5–5.0</td></tr>
+        <tr><td>U-122</td><td>122</td><td>30–110</td><td>0.5–5.0</td></tr>
     </table>
 </section>
 
-<hr>
+<hr class="divider">
 
 <!-- CP STUD -->
 <section>
-    <h2 data-lang="zh">CP 型立柱 CP Stud</h2>
+    <h2 data-lang="zh">CP 型立柱</h2>
     <h2 data-lang="en">CP Stud</h2>
 
     <div class="img-pair">
@@ -386,114 +348,24 @@ footer {
 
     <table>
         <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
-        <tr><td>CP-40</td><td>40</td><td>25–70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-50</td><td>50</td><td>25–70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-60</td><td>60</td><td>25–70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-65</td><td>65</td><td>25–70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-75</td><td>75</td><td>25–70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-92</td><td>92</td><td>25–70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-100</td><td>100</td><td>25–70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-125</td><td>125</td><td>25–70</td><td>0.80–2.50</td></tr>
-        <tr><td>CP-150</td><td>150</td><td>25–70</td><td>0.80–2.50</td></tr>
+        <tr><td>CP-40</td><td>40</td><td>25–70</td><td>0.8–2.5</td></tr>
+        <tr><td>CP-50</td><td>50</td><td>25–70</td><td>0.8–2.5</td></tr>
+        <tr><td>CP-75</td><td>75</td><td>25–70</td><td>0.8–2.5</td></tr>
+        <tr><td>CP-100</td><td>100</td><td>25–70</td><td>0.8–2.5</td></tr>
     </table>
 </section>
 
-<hr>
+<hr class="divider">
 
-<!-- H STUD -->
+<!-- LAST SECTION -->
 <section>
-    <h2 data-lang="zh">H 型立柱 H Stud</h2>
-    <h2 data-lang="en">H Stud</h2>
+    <h2 data-lang="zh">管道隔間之組合與收頭</h2>
+    <h2 data-lang="en">Pipe Partition Assembly</h2>
 
-    <div class="img-pair">
-        <img src="hstud.png">
-        <img src="hstudd.png">
-    </div>
-
-    <table>
-        <tr><th>Model</th><th>A</th><th>B</th><th>Thickness</th></tr>
-        <tr><td>H-51</td><td>51</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-65</td><td>65</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-75</td><td>75</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-92</td><td>92</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-100</td><td>100</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-125</td><td>125</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-150</td><td>150</td><td>35</td><td>0.8–2.0</td></tr>
-        <tr><td>H-200</td><td>200</td><td>35</td><td>0.8–2.0</td></tr>
-    </table>
+    <img src="agpf.png" class="full-img">
 </section>
 
-<hr>
-
-<!-- CH STUD -->
-<section>
-    <h2 data-lang="zh">CH 型立柱 CH Stud</h2>
-    <h2 data-lang="en">CH Stud</h2>
-
-    <div class="img-pair">
-        <img src="chstud.png">
-        <img src="chstudd.png">
-    </div>
-
-    <table>
-        <tr><th>Model</th><th>A</th><th>B</th><th>C</th><th>Thickness</th></tr>
-        <tr><td>CH-45</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-65</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-75</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-92</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-100</td><td>35</td><td>19</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-150</td><td>35</td><td>25</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-200</td><td>35</td><td>30</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
-        <tr><td>CH-230</td><td>35</td><td>30</td><td>25.4 / 19 / 13 / 10 / 7</td><td>0.8–1.25</td></tr>
-    </table>
-</section>
-
-<hr>
-
-<!-- J TRACK -->
-<section>
-    <h2 data-lang="zh">J 型槽 J Track</h2>
-    <h2 data-lang="en">J Track</h2>
-
-    <div class="img-pair">
-        <img src="jtrack.png">
-        <img src="jtrackd.png">
-    </div>
-
-    <table>
-        <tr><th>Model</th><th>A</th><th>B</th><th>C</th><th>Thickness</th></tr>
-        <tr><td>J-42</td><td>42</td><td>57</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-52</td><td>52</td><td>57</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-62</td><td>62</td><td>82</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-67</td><td>67</td><td>87</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-72</td><td>75</td><td>95</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-77</td><td>42</td><td>62</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-82</td><td>42</td><td>62</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-90</td><td>90</td><td>110</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-94</td><td>94</td><td>114</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-102</td><td>102</td><td>122</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-120</td><td>122</td><td>142</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-127</td><td>125</td><td>145</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-132</td><td>150</td><td>175</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-152</td><td>152</td><td>182</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-202</td><td>202</td><td>222</td><td>25.4</td><td>0.6–2.3</td></tr>
-        <tr><td>J-232</td><td>232</td><td>252</td><td>25.4</td><td>0.6–2.3</td></tr>
-    </table>
-</section>
-
-<hr>
-
-<!-- FINAL IMAGE SECTION -->
-<section>
-    <h2 data-lang="zh">管道隔間之組合及收頭處理</h2>
-    <h2 data-lang="en">Assembly of Groove Partition and Finishing</h2>
-
-    <div style="display:flex; justify-content:center; margin-top:30px;">
-        <img src="agpf.png" style="width:100%; max-width:1000px; border-radius:14px;">
-    </div>
-</section>
-
-</div> <!-- END CONTAINER -->
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -501,44 +373,36 @@ footer {
     <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
 </footer>
 
+<!-- JAVASCRIPT -->
 <script>
 /* LANGUAGE SYSTEM */
 let currentLang="zh";
+function applyLanguage(lang){
+    document.querySelectorAll("[data-lang]").forEach(el=>{
+        el.style.display = (el.getAttribute("data-lang")===lang) ? "" : "none";
+    });
+}
 function toggleLanguage(){
     currentLang = currentLang==="zh" ? "en" : "zh";
     document.getElementById("langBtn").innerText =
         currentLang==="zh" ? "English" : "中文";
     applyLanguage(currentLang);
 }
-function applyLanguage(lang){
-    document.querySelectorAll("[data-lang]").forEach(el=>{
-        el.style.display = (el.getAttribute("data-lang")===lang) ? "" : "none";
-    });
-}
-document.addEventListener("DOMContentLoaded",()=>{ applyLanguage("zh"); });
-
-/* DARK MODE */
-function toggleDark(){
-    document.body.classList.toggle("dark");
-    document.getElementById("darkBtn").innerText =
-        document.body.classList.contains("dark")
-        ? (currentLang==="zh" ? "淺色模式" : "Light Mode")
-        : (currentLang==="zh" ? "深色模式" : "Dark Mode");
-}
+document.addEventListener("DOMContentLoaded",()=>{
+    applyLanguage("zh");
+});
 
 /* POPDOWN NAV */
-window.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelector("header");
-    const navBar = document.getElementById("navBar");
-    let isHovering = false;
-
-    function showMenu(){ navBar.classList.add("visible"); }
-    function hideMenu(){ setTimeout(()=>{ if(!isHovering) navBar.classList.remove("visible"); },150); }
-
-    header.addEventListener("mouseenter",()=>{ isHovering=true; showMenu(); });
-    header.addEventListener("mouseleave",()=>{ isHovering=false; hideMenu(); });
-    navBar.addEventListener("mouseenter",()=>{ isHovering=true; showMenu(); });
-    navBar.addEventListener("mouseleave",()=>{ isHovering=false; hideMenu(); });
+window.addEventListener("DOMContentLoaded",()=>{
+    const header=document.querySelector("header");
+    const nav=document.getElementById("navBar");
+    let hover=false;
+    function show(){ nav.classList.add("visible"); }
+    function hide(){ setTimeout(()=>{ if(!hover) nav.classList.remove("visible"); },150); }
+    header.addEventListener("mouseenter",()=>{ hover=true; show(); });
+    header.addEventListener("mouseleave",()=>{ hover=false; hide(); });
+    nav.addEventListener("mouseenter",()=>{ hover=true; show(); });
+    nav.addEventListener("mouseleave",()=>{ hover=false; hide(); });
 });
 </script>
 
