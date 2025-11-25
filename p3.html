@@ -2,202 +2,292 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8" />
-<title>承閎股份有限公司 — T-BAR System</title>
+<title>承閎股份有限公司 — T-BAR Ceiling System</title>
 
 <style>
-/* Same theme as p2 */
+/* ============================================================
+   GLOBAL — MATCH FULL SITE THEME
+============================================================ */
 html { scroll-padding-top: 140px; }
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background: #ffffff;
-    color: #222;
-    transition: 0.3s ease;
+    margin:0;
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background:#f7faff;
+    color:#222;
+    line-height:1.75;
+    overflow-x:hidden;
+    transition:0.3s ease;
 }
-body.dark { background: #0f172a; color: #e2e8f0; }
+body.dark { background:#0f172a; color:#e2e8f0; }
 
-/* HEADER */
+.fade-up { opacity:0; animation:fadeUp .9s ease forwards; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(35px);} to{opacity:1;transform:translateY(0);} }
+
+.circle {
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle,#ffffffaa,#2760A833);
+    filter:blur(4px);
+}
+.c1 { width:180px;height:180px; top:80px; left:12%; animation:floatAnim 6s infinite; }
+.c2 { width:240px;height:240px; bottom:60px; right:12%; animation:floatAnim 8s infinite; }
+.c3 { width:140px;height:140px; bottom:22%; left:20%; animation:floatAnim 7s infinite; }
+
+@keyframes floatAnim { 0%{transform:translateY(0);} 50%{transform:translateY(-12px);} 100%{transform:translateY(0);} }
+
+/* ============================================================
+   HEADER — GLASS STYLE
+============================================================ */
 header {
-    background: #2760A8;
-    color: white;
-    padding: 10px 40px;
-    display: flex;
-    align-items: center;
-    height: 90px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(12px);
+    padding:10px 40px;
+    height:92px;
+    display:flex;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid rgba(255,255,255,0.3);
+    box-shadow:0 6px 25px rgba(0,0,0,0.15);
 }
-.header-logo {
-    height: 70px; width: 70px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-right: 18px;
-    cursor: pointer;
+header img {
+    height:72px; width:72px;
+    border-radius:16px;
+    object-fit:cover;
+    margin-right:20px;
+    cursor:pointer;
+    background:white;
+    box-shadow:0 5px 20px rgba(39,96,168,0.35);
 }
-header h1 { margin: 0; font-size: 32px; }
-
-/* LANGUAGE & MODE */
-button { cursor: pointer; }
-
-/* SIDE BACK BUTTON (same as p2) */
-.back-button {
-    position: fixed;
-    top: 150px;
-    left: 0;
-    width: 22px;
-    height: 70px;
-    background: #568cce;
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-    border: none;
-    border-radius: 0 10px 10px 0;
-    z-index: 2000;
+header h1 {
+    margin:0;
+    font-size:30px;
+    font-weight:800;
+    color:#1F4F89;
 }
 
-/* CONTENT */
-section { padding: 40px; }
-h2 { margin-top: 0; }
+/* Buttons */
+.lang-btn {
+    padding:10px 20px;
+    background:linear-gradient(135deg,#2760A8,#1F4F89);
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    box-shadow:0 6px 20px rgba(39,96,168,0.35);
+    transition:.25s;
+}
+.lang-btn:hover { transform:translateY(-3px); }
 
-/* IMAGE STYLES */
+/* ============================================================
+   POPDOWN NAV
+============================================================ */
+#navBar {
+    background:linear-gradient(to right,#2760A8,#1F4F89);
+    width:100%;
+    position:fixed;
+    top:110px; left:0;
+    display:flex;
+    justify-content:center;
+    gap:60px;
+    opacity:0;
+    height:0;
+    overflow:hidden;
+    transition:height .25s, opacity .25s;
+    z-index:900;
+    box-shadow:0 8px 18px rgba(0,0,0,0.25);
+}
+#navBar.visible { opacity:1; height:60px; padding:14px 0; }
+.nav-item {
+    color:white; cursor:pointer;
+    font-size:19px; font-weight:650;
+    transition:0.2s;
+}
+.nav-item:hover { transform:scale(1.18); }
+
+/* ============================================================
+   FIXED BACK BUTTON
+============================================================ */
+.side-back {
+    position:fixed;
+    top:120px; left:0;
+    width:36px; height:70px;
+    background:linear-gradient(135deg,#2760A8,#1F4F89);
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:0 14px 14px 0;
+    cursor:pointer;
+    z-index:2000;
+    transition:0.25s;
+}
+.side-back:hover { transform:translateX(5px); }
+
+/* ============================================================
+   HERO SECTION
+============================================================ */
+#hero {
+    text-align:center;
+    padding:160px 20px 140px;
+    background:linear-gradient(135deg,#eaf1ff,#f7faff 40%,#e2ecff);
+    position:relative;
+    overflow:hidden;
+}
+#hero h1 {
+    font-size:46px;
+    font-weight:900;
+    color:#1F4F89;
+}
+#hero p {
+    font-size:20px;
+    opacity:0.75;
+    max-width:700px;
+    margin:auto;
+}
+
+/* ============================================================
+   CONTENT
+============================================================ */
+.container {
+    max-width:1200px;
+    margin:auto;
+    padding:60px;
+}
+
 .tb-single {
-    width: 800px;
-    max-width: 100%;
-    margin: 40px auto;
-    display: block;
-    border-radius: 12px;
+    width:100%;
+    max-width:900px;
+    display:block;
+    margin:40px auto;
+    border-radius:14px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.08);
 }
 
 .tb-row {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin: 40px 0;
-    flex-wrap: wrap;
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin:40px 0;
+    flex-wrap:wrap;
 }
 
 .tb-pair {
-    height: 300px;
-    width: auto;
-    max-width: 48%;
-    object-fit: contain;
-    border-radius: 12px;
-    background: #fafafa;
+    max-width:48%;
+    width:100%;
+    height:auto;
+    border-radius:14px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.08);
+    background:#fafafa;
+}
+
+/* Divider */
+.divider {
+    border:none;
+    border-top:1px solid #ccc;
+    width:80%;
+    margin:60px auto;
 }
 
 /* FOOTER */
 footer {
-    background: #003066;
-    color: white;
-    text-align: center;
-    padding: 20px;
+    background:#003066;
+    color:white;
+    text-align:center;
+    padding:28px;
+    margin-top:60px;
 }
 </style>
-
-<script>
-let currentLang = "zh";
-
-function updateModeText() {
-    const dark = document.body.classList.contains("dark");
-    document.getElementById("modeBtn").innerText =
-        currentLang === "zh" ? (dark ? "淺色模式" : "深色模式")
-                             : (dark ? "Light Mode" : "Dark Mode");
-}
-
-function toggleLanguage() {
-    currentLang = currentLang === "zh" ? "en" : "zh";
-    document.getElementById("langToggleBtn").innerText =
-        currentLang === "zh" ? "English" : "中文";
-    switchLang(currentLang);
-    updateModeText();
-}
-
-function switchLang(lang) {
-    document.querySelectorAll("[data-lang]").forEach(el => {
-        el.style.display = el.getAttribute("data-lang") === lang ? "block" : "none";
-    });
-}
-
-function toggleMode() {
-    document.body.classList.toggle("dark");
-    updateModeText();
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    switchLang("zh");
-    updateModeText();
-});
-</script>
 </head>
 
 <body>
 
+<!-- BACK BUTTON -->
+<div class="side-back" onclick="location.href='index.html'">←</div>
+
 <!-- HEADER -->
 <header>
-    <img src="logo.jpeg" class="header-logo" onclick="location.href='index.html'">
+    <img src="logo.jpeg" onclick="location.href='index.html'">
+
     <div>
         <h1 data-lang="zh">T-BAR 輕鋼架</h1>
         <h1 data-lang="en">T-BAR Ceiling System</h1>
     </div>
 
     <div style="margin-left:auto; display:flex; gap:15px;">
-        <button id="langToggleBtn" onclick="toggleLanguage()">English</button>
-        <button id="modeBtn" onclick="toggleMode()">深色模式</button>
+        <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
+        <button class="lang-btn" id="darkBtn" onclick="toggleDark()">深色模式</button>
     </div>
 </header>
 
-<!-- SIDE BACK BUTTON -->
-<button class="back-button" onclick="location.href='index.html'">←</button>
+<!-- POPDOWN NAV -->
+<div id="navBar">
+    <div class="nav-item" data-lang="zh" onclick="location.href='index.html'">首頁</div>
+    <div class="nav-item" data-lang="en" onclick="location.href='index.html'">Home</div>
 
-<!-- ==================== FEATURES ==================== -->
+    <div class="nav-item" data-lang="zh" onclick="location.href='index.html#features'">產品介紹</div>
+    <div class="nav-item" data-lang="en" onclick="location.href='index.html#features'">Products</div>
+
+    <div class="nav-item" data-lang="zh" onclick="location.href='index.html#about'">關於我們</div>
+    <div class="nav-item" data-lang="en" onclick="location.href='index.html#about'">About Us</div>
+
+    <div class="nav-item" data-lang="zh" onclick="location.href='index.html#contact'">聯絡我們</div>
+    <div class="nav-item" data-lang="en" onclick="location.href='index.html#contact'">Contact</div>
+</div>
+
+<!-- HERO -->
+<div id="hero" class="fade-up">
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+    <div class="circle c3"></div>
+
+    <h1 data-lang="zh">T-BAR 輕鋼架系列</h1>
+    <h1 data-lang="en">T-BAR Ceiling Suspension Series</h1>
+
+    <p data-lang="zh">快速施工、耐燃、防腐蝕，搭配各式天花板材完美安裝。</p>
+    <p data-lang="en">Fast-installation suspension system with excellent fire and corrosion resistance.</p>
+</div>
+
+<!-- CONTENT -->
+<div class="container fade-up">
+
 <section>
     <h2 data-lang="zh">產品特性 Features</h2>
     <h2 data-lang="en">Features</h2>
 
     <p data-lang="zh">
-        ■ 輕鋼石膏天花，目視輕鋼架主十字骨架。<br>
-        ■ 單吊桿 30.35mm 之多樣化設計，符合 CNS1244 標準之要求。<br>
-        ■ 輕鋼架平面度佳，抗拉強度 210MPA。<br>
-        ■ 塗料烤漆厚度為 20–50 μm。
+        ■ 輕鋼石膏天花，主副骨架清晰可見。<br>
+        ■ 單吊桿 30.35mm 之多樣化設計，符合 CNS1244 標準。<br>
+        ■ 平整度佳，抗拉強度達 210MPA。<br>
+        ■ 烤漆厚度 20–50 μm。
     </p>
 
     <p data-lang="en">
-        T-BAR is also named ceiling suspension system, ceiling grid, ceiling tee, ceiling profile in different markets.
-        The easy assembly method facilitates fast installation and removal. Its fire-resistance performance is superior
-        to traditional decoration materials such as wood. It supports various ceiling panels including mineral fiber,
-        gypsum board, PVC gypsum board, and metal ceiling panels.
+        A modular ceiling suspension system known as T-Bar or Tee-grid.
+        Fast installation, high fire-resistance, and supports a wide range of panels including
+        mineral fiber, gypsum, PVC gypsum, and metal ceilings.
     </p>
 </section>
 
-<!-- ==================== APPLICATION ==================== -->
 <section>
-    <h2 data-lang="zh">適用範圍 Application</h2>
+    <h2 data-lang="zh">適用範圍 Applications</h2>
     <h2 data-lang="en">Applications</h2>
 
-    <p data-lang="zh">
-        辦公室、醫院、教堂，以及各種大型的公共場所。
-    </p>
-
-    <p data-lang="en">
-        Office, hospital, church, and all kinds of large public spaces.
-    </p>
+    <p data-lang="zh">適用於辦公室、醫院、教堂與各大型公共建築。</p>
+    <p data-lang="en">Ideal for offices, hospitals, churches, and various large public areas.</p>
 </section>
 
-<!-- ==================== IMAGE CONTENT ==================== -->
-
-<!-- TB1–TB3: stacked -->
+<!-- TB IMAGES (STACKED 3, THEN GRID 6) -->
 <img src="tb1.png" class="tb-single">
 <img src="tb2.png" class="tb-single">
 <img src="tb3.png" class="tb-single">
-<hr style="
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 60px auto;
-    width: 80%;
-">
-<!-- TB4–TB9: 2 per row -->
+
+<hr class="divider">
+
 <div class="tb-row">
     <img src="tb4.png" class="tb-pair">
     <img src="tb5.png" class="tb-pair">
@@ -213,11 +303,64 @@ document.addEventListener("DOMContentLoaded", () => {
     <img src="tb9.png" class="tb-pair">
 </div>
 
+</div> <!-- end container -->
+
 <!-- FOOTER -->
 <footer>
     <p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
     <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
 </footer>
+
+<!-- JAVASCRIPT -->
+<script>
+/* LANGUAGE */
+let currentLang="zh";
+function applyLanguage(lang){
+    document.querySelectorAll("[data-lang]").forEach(el=>{
+        el.style.display = (el.getAttribute("data-lang")===lang) ? "" : "none";
+    });
+}
+function toggleLanguage(){
+    currentLang = currentLang==="zh" ? "en" : "zh";
+    document.getElementById("langBtn").innerText =
+        currentLang==="zh" ? "English" : "中文";
+    applyLanguage(currentLang);
+    updateDarkButton();
+}
+
+/* DARK MODE */
+function toggleDark(){
+    document.body.classList.toggle("dark");
+    updateDarkButton();
+}
+function updateDarkButton(){
+    const dark = document.body.classList.contains("dark");
+    document.getElementById("darkBtn").innerText =
+        dark
+        ? (currentLang==="zh" ? "淺色模式" : "Light Mode")
+        : (currentLang==="zh" ? "深色模式" : "Dark Mode");
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+    applyLanguage("zh");
+    updateDarkButton();
+});
+
+/* POPDOWN NAV */
+window.addEventListener("DOMContentLoaded", () => {
+    const header=document.querySelector("header");
+    const navBar=document.getElementById("navBar");
+    let hover=false;
+
+    function show(){ navBar.classList.add("visible"); }
+    function hide(){ setTimeout(()=>{ if(!hover) navBar.classList.remove("visible"); },150); }
+
+    header.addEventListener("mouseenter",()=>{ hover=true; show(); });
+    header.addEventListener("mouseleave",()=>{ hover=false; hide(); });
+    navBar.addEventListener("mouseenter",()=>{ hover=true; show(); });
+    navBar.addEventListener("mouseleave",()=>{ hover=false; hide(); });
+});
+</script>
 
 </body>
 </html>
