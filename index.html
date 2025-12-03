@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <title>承閎股份有限公司 — ChangHun Steel Inc.</title>
 
+<!-- OpenAI Chat Widget -->
+<script src="https://cdn.jsdelivr.net/npm/openai-chat-widget@latest/dist/widget.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/openai-chat-widget@latest/dist/widget.css" />
+
 <style>
 /* ============================================================
    GLOBAL — DYNAMIC GRADIENT DESIGN
@@ -48,7 +52,7 @@ body {
 .container {
     max-width:1200px;
     margin:auto;
-    padding:60px 60px;   /* ← increased spacing (Option A) */
+    padding:60px 60px;
 }
 
 /* ============================================================
@@ -224,27 +228,6 @@ table td {
     box-shadow:0 3px 12px rgba(0,0,0,0.06);
 }
 
-/* FEATURE CARDS */
-.feature-card {
-    background:white;
-    border-radius:16px;
-    padding:30px 35px;
-    margin-bottom:35px;
-    border:1px solid #e5e7eb;
-    box-shadow:0 4px 14px rgba(0,0,0,0.06);
-}
-.feature-card h3 {
-    margin-top:0;
-    color:#1F4F89;
-    font-weight:700;
-}
-
-@media(max-width:700px){
-    #navBar { display:none; }
-    .contact-grid { grid-template-columns:1fr; padding:20px; }
-    .category-grid { grid-template-columns:1fr; }
-}
-
 /* FOOTER */
 footer {
     background:#003066;
@@ -254,11 +237,35 @@ footer {
     margin-top:60px;
     font-size:15px;
 }
+
+/* ============================================================
+   FLOATING CHAT BUTTON
+============================================================ */
+#floatingChatBtn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: linear-gradient(135deg, #2760A8, #1F4F89);
+    color: white;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:32px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    z-index:9999;
+    transition:0.25s;
+}
+#floatingChatBtn:hover { transform: scale(1.08); }
 </style>
 
-
 <script>
-/* Language System */
+/* ============================================================
+   LANGUAGE SYSTEM
+============================================================ */
 function applyLanguage(lang){
     document.querySelectorAll("[data-lang]").forEach(el=>{
         el.style.display = (el.getAttribute("data-lang")===lang) ? "" : "none";
@@ -275,7 +282,7 @@ function toggleLanguage(){
 
 document.addEventListener("DOMContentLoaded",()=>{ applyLanguage("zh"); });
 
-/* Popdown Nav */
+/* POPDOWN NAV */
 window.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector("header");
     const navBar = document.getElementById("navBar");
@@ -291,14 +298,64 @@ window.addEventListener("DOMContentLoaded", () => {
     navBar.addEventListener("mouseleave",()=>{ isHovering=false; hideMenu(); });
 });
 
-/* Scroll to top on load */
+/* Scroll to top */
 window.onload = () => { window.scrollTo(0,0); };
 
 function scrollToSection(id){
     document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
+
+/* ============================================================
+   AI CHAT — Floating Button + OpenAI Widget
+============================================================ */
+
+let lastMessageTime = 0;
+
+function openFloatingChat(){
+    const now = Date.now();
+    if(now - lastMessageTime < 5000){
+        alert("請稍候 5 秒再試\nPlease wait 5 seconds before sending again.");
+        return;
+    }
+    lastMessageTime = now;
+    openAIChatBox();
+}
+
+function openAIChatBox(){
+
+    const zhPrompt = `
+你是承閎股份有限公司的 AI 產品客服。回答範圍僅限：
+- 輕隔間鋼架
+- 配件與施工
+- T-Bar 輕鋼架
+- 暗架天花
+- 流明天花系列
+提供清楚、簡短、專業的回答。
+    `;
+
+    const enPrompt = `
+You are the AI product assistant for ChangHun Steel Inc.
+Answer questions ONLY about:
+- Partition frame system
+- Accessories & installation
+- T-Bar ceiling
+- Concealed ceiling
+- Metal ceiling series
+Provide short, clear professional answers.
+    `;
+
+    const suggestions_zh = ["詢問輕隔間鋼架", "詢問 T-Bar", "詢問暗架天花", "詢問流明天花"];
+    const suggestions_en = ["Ask about Partition Frame", "Ask about T-Bar", "Ask about Concealed Ceiling", "Ask about Metal Ceiling"];
+
+    OpenAIChatWidget.open({
+        model: "gpt-4o-mini",
+        systemPrompt: currentLang === "zh" ? zhPrompt : enPrompt,
+        suggestions: currentLang === "zh" ? suggestions_zh : suggestions_en
+    });
+}
 </script>
 </head>
+
 
 
 
@@ -348,7 +405,6 @@ function scrollToSection(id){
 <h2 data-lang="zh">產品介紹</h2>
 <h2 data-lang="en">Products</h2>
 
-<!-- CATEGORY BOXES -->
 <div class="category-grid" style="margin-bottom:50px;">
 
     <div class="category-box" onclick="location.href='p1.html'">
@@ -378,7 +434,7 @@ function scrollToSection(id){
 
 </div>
 
-<!-- FEATURE CARDS -->
+<!-- FEATURE CARDS (unchanged text) -->
 <h2 data-lang="zh" style="color:#1F4F89; margin-bottom:25px;">特性 Features</h2>
 <h2 data-lang="en" style="color:#1F4F89; margin-bottom:25px;">Features</h2>
 
@@ -450,8 +506,6 @@ Our light steel frames for partition are produced from galvanized coils through 
 
 </section>
 
-
-
 <!-- ABOUT -->
 <section id="about" class="container fade-up">
 <h2 data-lang="zh">關於我們</h2>
@@ -478,6 +532,7 @@ As technology evolves, fire-protection has become fundamental.
 </p>
 
 </section>
+
 
 <!-- CONTACT -->
 <section id="contact" class="container fade-up">
@@ -521,6 +576,9 @@ As technology evolves, fire-protection has become fundamental.
     <p data-lang="zh">© 2025 承閎股份有限公司 版權所有</p>
     <p data-lang="en">© 2025 ChangHun Steel Inc. All Rights Reserved.</p>
 </footer>
+
+<!-- Floating Chat Button -->
+<div id="floatingChatBtn" onclick="openFloatingChat()">💬</div>
 
 </body>
 </html>
